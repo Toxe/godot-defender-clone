@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0jtokddq4er"]
+
+[ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://player/player.tscn" id="1_im8u2"]
+[ext_resource type="PackedScene" uid="uid://cvbnwoj0fo1c0" path="res://enemies/enemy.tscn" id="2_a4ga4"]
+
+[node name="Main" type="Node"]
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Sky" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Mountains" type="Line2D" parent="Background"]
+position = Vector2(12, 84)
+points = PackedVector2Array(-345, 577, 185, 333, 507, 446, 770, 482, 973, 367, 1217, 501)
+width = 5.0
+default_color = Color(0.623529, 0.623529, 0.623529, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_im8u2")]
+position = Vector2(188, 323)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("2_a4ga4")]
+position = Vector2(991, 221)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_a4ga4")]
+position = Vector2(1079, 351)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_a4ga4")]
+position = Vector2(1013, 95)
