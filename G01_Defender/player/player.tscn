@@ -1,15 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwjdmjmwuyqem"]
+[gd_scene load_steps=3 format=3 uid="uid://cwjdmjmwuyqem"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_wjarh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk32p"]
 size = Vector2(64, 20)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_wjarh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_jk32p")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Sprite"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.745098, 0.745098, 0.745098, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="Sprite"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -37,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.627451, 0.627451, 0.627451, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="."]
+[node name="ColorRect3" type="ColorRect" parent="Sprite"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.564706)
 
-[node name="ColorRect4" type="ColorRect" parent="."]
+[node name="ColorRect4" type="ColorRect" parent="Sprite"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://w0jtokddq4er"]
+[gd_scene load_steps=4 format=3 uid="uid://w0jtokddq4er"]
 
+[ext_resource type="Script" path="res://levels/main.gd" id="1_gi007"]
 [ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://player/player.tscn" id="1_im8u2"]
 [ext_resource type="PackedScene" uid="uid://cvbnwoj0fo1c0" path="res://enemies/enemy.tscn" id="2_a4ga4"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_gi007")
 
 [node name="Background" type="Node" parent="."]
 
@@ -34,3 +36,5 @@ position = Vector2(1079, 351)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2_a4ga4")]
 position = Vector2(1013, 95)
+
+[connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
