@@ -1,14 +1,15 @@
-class_name Player extends CharacterBody2D
+class_name Player extends Area2D
 
 signal player_killed
 
-@export var speed = 250
+const speed: float = 250
+
 
 func _physics_process(delta):
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
     update_horizontal_sprite_flip(direction)
-    check_collision(move_and_collide(direction * speed * delta))
+    position += direction * speed * delta
 
 
 func update_horizontal_sprite_flip(direction: Vector2):
@@ -16,6 +17,5 @@ func update_horizontal_sprite_flip(direction: Vector2):
         $Sprite.scale.x = 1 if direction.x > 0 else -1
 
 
-func check_collision(collision: KinematicCollision2D):
-    if collision:
-        player_killed.emit()
+func _on_area_entered(_area):
+    player_killed.emit()

@@ -1,14 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwjdmjmwuyqem"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_wjarh"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_n4fie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk32p"]
 size = Vector2(64, 20)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="Area2D"]
 collision_mask = 2
-motion_mode = 1
-script = ExtResource("1_wjarh")
+script = ExtResource("1_n4fie")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -69,3 +68,5 @@ offset_top = -7.0
 offset_right = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

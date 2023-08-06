@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://w0jtokddq4er"]
 
 [ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_gi007"]
-[ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://scenes/player/player.tscn" id="1_im8u2"]
 [ext_resource type="PackedScene" uid="uid://cvbnwoj0fo1c0" path="res://scenes/enemies/enemy.tscn" id="2_a4ga4"]
+[ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://scenes/player/player.tscn" id="2_ox6bm"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_gi007")
@@ -23,7 +23,7 @@ points = PackedVector2Array(-345, 577, 185, 333, 507, 446, 770, 482, 973, 367, 1
 width = 5.0
 default_color = Color(0.623529, 0.623529, 0.623529, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_im8u2")]
+[node name="Player" parent="." instance=ExtResource("2_ox6bm")]
 position = Vector2(188, 323)
 
 [node name="Enemies" type="Node" parent="."]
