@@ -69,4 +69,7 @@ offset_right = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="LaserSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(33, 6)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

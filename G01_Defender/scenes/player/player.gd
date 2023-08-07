@@ -19,7 +19,7 @@ func _physics_process(delta):
 
 func fire_laser():
     var laser = laser_scene.instantiate()
-    laser.setup(global_position, get_horizontal_orientation())
+    laser.setup($LaserSpawnPoint.global_position, get_horizontal_orientation())
     get_parent().add_child(laser)
 
 
