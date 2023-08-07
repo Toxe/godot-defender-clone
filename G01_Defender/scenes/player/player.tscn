@@ -13,6 +13,9 @@ script = ExtResource("1_n4fie")
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_jk32p")
 
+[node name="LaserSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(33, 6)
+
 [node name="Sprite" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Sprite"]
@@ -68,8 +71,5 @@ offset_top = -7.0
 offset_right = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="LaserSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(33, 6)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
