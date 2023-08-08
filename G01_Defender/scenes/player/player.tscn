@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwjdmjmwuyqem"]
+[gd_scene load_steps=5 format=3 uid="uid://cwjdmjmwuyqem"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_n4fie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk32p"]
 size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv862"]
+size = Vector2(4608, 1296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbp18"]
+size = Vector2(2304, 1296)
 
 [node name="Player" type="Area2D"]
 collision_mask = 2
@@ -15,6 +21,12 @@ shape = SubResource("RectangleShape2D_jk32p")
 
 [node name="LaserSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(33, 6)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_top = 0
+limit_bottom = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -72,4 +84,22 @@ offset_right = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Wrap Enemies" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wrap Enemies"]
+shape = SubResource("RectangleShape2D_bv862")
+
+[node name="Wrap Level Chunks" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wrap Level Chunks"]
+shape = SubResource("RectangleShape2D_bbp18")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Wrap Enemies" to="." method="_on_wrap_enemies_area_exited"]
+[connection signal="area_exited" from="Wrap Level Chunks" to="." method="_on_wrap_level_chunks_area_exited"]
