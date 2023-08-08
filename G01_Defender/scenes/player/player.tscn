@@ -84,22 +84,22 @@ offset_right = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Wrap Enemies" type="Area2D" parent="."]
+[node name="WrapEnemies" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wrap Enemies"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WrapEnemies"]
 shape = SubResource("RectangleShape2D_bv862")
 
-[node name="Wrap Level Chunks" type="Area2D" parent="."]
+[node name="WrapLevelChunks" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wrap Level Chunks"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WrapLevelChunks"]
 shape = SubResource("RectangleShape2D_bbp18")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="Wrap Enemies" to="." method="_on_wrap_enemies_area_exited"]
-[connection signal="area_exited" from="Wrap Level Chunks" to="." method="_on_wrap_level_chunks_area_exited"]
+[connection signal="area_exited" from="WrapEnemies" to="." method="_on_wrap_enemies_area_exited"]
+[connection signal="area_exited" from="WrapLevelChunks" to="." method="_on_wrap_level_chunks_area_exited"]
