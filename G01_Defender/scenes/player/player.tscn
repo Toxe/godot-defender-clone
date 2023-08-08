@@ -12,7 +12,7 @@ size = Vector2(4608, 1296)
 size = Vector2(2304, 1296)
 
 [node name="Player" type="Area2D"]
-collision_mask = 2
+collision_mask = 18
 script = ExtResource("1_n4fie")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
