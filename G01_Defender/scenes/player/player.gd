@@ -2,7 +2,7 @@ extends Area2D
 
 signal player_killed
 
-const laser_scene = preload("res://scenes/player/laser.tscn")
+const laser_scene = preload("laser.tscn")
 const speed: float = 250
 
 
