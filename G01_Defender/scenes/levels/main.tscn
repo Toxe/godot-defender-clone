@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://w0jtokddq4er"]
+[gd_scene load_steps=7 format=3 uid="uid://w0jtokddq4er"]
 
 [ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_gi007"]
 [ext_resource type="PackedScene" uid="uid://cvbnwoj0fo1c0" path="res://scenes/enemies/enemy.tscn" id="2_a4ga4"]
 [ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://scenes/player/player.tscn" id="2_ox6bm"]
 [ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/level_chunk_01.tscn" id="2_r1lcs"]
+[ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/level_chunk_02.tscn" id="3_yhscp"]
+[ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/level_chunk_03.tscn" id="4_3w2cb"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_gi007")
@@ -13,28 +15,10 @@ script = ExtResource("1_gi007")
 [node name="LevelChunk01" parent="LevelChunks" instance=ExtResource("2_r1lcs")]
 position = Vector2(-1152, 0)
 
-[node name="Label" type="Label" parent="LevelChunks/LevelChunk01"]
-offset_right = 57.0
-offset_bottom = 140.0
-theme_override_font_sizes/font_size = 100
-text = "1"
+[node name="LevelChunk02" parent="LevelChunks" instance=ExtResource("3_yhscp")]
 
-[node name="LevelChunk02" parent="LevelChunks" instance=ExtResource("2_r1lcs")]
-
-[node name="Label2" type="Label" parent="LevelChunks/LevelChunk02"]
-offset_right = 57.0
-offset_bottom = 140.0
-theme_override_font_sizes/font_size = 100
-text = "2"
-
-[node name="LevelChunk03" parent="LevelChunks" instance=ExtResource("2_r1lcs")]
+[node name="LevelChunk03" parent="LevelChunks" instance=ExtResource("4_3w2cb")]
 position = Vector2(1152, 0)
-
-[node name="Label3" type="Label" parent="LevelChunks/LevelChunk03"]
-offset_right = 57.0
-offset_bottom = 140.0
-theme_override_font_sizes/font_size = 100
-text = "3"
 
 [node name="Player" parent="." instance=ExtResource("2_ox6bm")]
 position = Vector2(188, 323)

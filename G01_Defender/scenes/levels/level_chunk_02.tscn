@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyw4myjc24fl0"]
+
+[ext_resource type="PackedScene" uid="uid://d3cfd4ftvedds" path="res://scenes/levels/level_chunk_base.tscn" id="1_am5cd"]
+
+[node name="LevelChunk02" instance=ExtResource("1_am5cd")]
+
+[node name="Mountains" parent="." index="2"]
+points = PackedVector2Array(0, -100, 149, -45, 517, -188, 784, -48, 987, -147, 1152, -100)
