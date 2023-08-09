@@ -15,6 +15,7 @@ func _physics_process(delta):
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
     update_horizontal_orientation(direction.x)
     position += direction * speed * delta
+    position.y = clamp(position.y, $CollisionShape2D.shape.size.y + 5, 648 - $CollisionShape2D.shape.size.y - 5)
 
 
 func fire_laser():
