@@ -5,10 +5,6 @@ const speed: float = 50
 var direction := Vector2(-1, 0.3).normalized()
 
 
-func _ready():
-    $ShootTimer.start(randf_range(1, 3))
-
-
 func _physics_process(delta):
     position += direction * speed * delta
 
@@ -26,3 +22,11 @@ func _on_area_entered(_area):
 
 func _on_shoot_timer_timeout():
     shoot_bullet()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+    $ShootTimer.start(randf_range(1, 3))
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+    $ShootTimer.stop()
