@@ -3,7 +3,7 @@ extends Area2D
 signal player_killed
 
 const laser_scene = preload("laser.tscn")
-const speed: float = 250
+const speed: float = 500
 
 
 func _process(_delta):
