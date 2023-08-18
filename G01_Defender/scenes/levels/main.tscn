@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://w0jtokddq4er"]
 
 [ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_gi007"]
-[ext_resource type="PackedScene" uid="uid://cvbnwoj0fo1c0" path="res://scenes/enemies/enemy.tscn" id="2_a4ga4"]
 [ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://scenes/player/player.tscn" id="2_ox6bm"]
 [ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/level_chunk_01.tscn" id="2_r1lcs"]
 [ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/level_chunk_02.tscn" id="3_yhscp"]
 [ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/level_chunk_03.tscn" id="4_3w2cb"]
+[ext_resource type="PackedScene" uid="uid://u6fj8vy2f1oe" path="res://scenes/enemies/lander.tscn" id="7_1s4ej"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_gi007")
@@ -23,30 +23,7 @@ position = Vector2(1152, 0)
 [node name="Player" parent="." instance=ExtResource("2_ox6bm")]
 position = Vector2(188, 323)
 
-[node name="Enemies" type="Node" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(991, 221)
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(-660, 134)
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(1079, 351)
-
-[node name="Enemy8" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(-176, 232)
-
-[node name="Enemy5" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(2147, 123)
-
-[node name="Enemy6" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(1840, 199)
-
-[node name="Enemy7" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(137, 108)
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource("2_a4ga4")]
-position = Vector2(1013, 95)
+[node name="Lander" parent="." instance=ExtResource("7_1s4ej")]
+position = Vector2(897, 180)
 
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
