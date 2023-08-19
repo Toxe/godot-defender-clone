@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/enemies/bullet.gd" id="1_jgfq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1blke"]
-size = Vector2(16, 16)
+size = Vector2(12, 12)
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 16
@@ -13,8 +13,8 @@ script = ExtResource("1_jgfq0")
 shape = SubResource("RectangleShape2D_1blke")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-5, 1.42109e-14)
-scale = Vector2(0.5, 1)
+position = Vector2(-3.5, 1.42109e-14)
+scale = Vector2(0.35, 0.7)
 rect = Rect2(-10, -10, 40, 20)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -23,13 +23,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 1, 1)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
