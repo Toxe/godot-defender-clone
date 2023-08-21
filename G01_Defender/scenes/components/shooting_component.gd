@@ -1,5 +1,7 @@
 class_name ShootingComponent extends Node2D
 
+signal shot_fired
+
 @export var shot_scene: PackedScene = null
 @export var visible_on_screen_notifier: VisibleOnScreenNotifier2D = null
 @export var min_shot_delay := 1.0
@@ -25,6 +27,7 @@ func shoot():
     shot.setup(global_position)
     get_parent().get_parent().add_child(shot)
     start_shooting()
+    shot_fired.emit()
 
 
 func _on_timer_timeout():
