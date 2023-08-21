@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://cecxlt77ef7sj"]
+
+[ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="1_palca"]
+[ext_resource type="PackedScene" uid="uid://ciovhjmxtwyjt" path="res://scenes/components/shooting_component.tscn" id="2_x5jbv"]
+[ext_resource type="PackedScene" uid="uid://dro1lmf7r4t40" path="res://scenes/enemies/bomb.tscn" id="3_2ih8u"]
+[ext_resource type="PackedScene" uid="uid://chpsvtbd20bmx" path="res://scenes/components/repeat_shooting_component.tscn" id="4_405ek"]
+[ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="4_of4f4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wul00"]
+size = Vector2(38, 32)
+
+[node name="Bomber" type="Node2D"]
+
+[node name="MovementComponent" parent="." instance=ExtResource("1_palca")]
+velocity = Vector2(-55, 0)
+
+[node name="ShootingComponent" parent="." instance=ExtResource("2_x5jbv")]
+shot_scene = ExtResource("3_2ih8u")
+min_shot_delay = 0.5
+max_shot_delay = 1.0
+
+[node name="RepeatShootingComponent" parent="." node_paths=PackedStringArray("shooting_component", "visible_on_screen_notifier") instance=ExtResource("4_405ek")]
+shooting_component = NodePath("../ShootingComponent")
+visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")
+min_repeat_delay = 3.0
+max_repeat_delay = 4.0
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_of4f4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_wul00")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.5, -3.5)
+scale = Vector2(2.45, 2.05)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -23.0
+offset_right = 28.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.796078, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -16.0
+offset_right = 19.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
