@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqhxm0di6ey0l"]
+[gd_scene load_steps=5 format=3 uid="uid://bqhxm0di6ey0l"]
 
 [ext_resource type="Script" path="res://scenes/player/laser.gd" id="1_xjoqe"]
+[ext_resource type="PackedScene" uid="uid://du0c02bx6fs4c" path="res://scenes/components/lifetime_component.tscn" id="2_64nuv"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_w2xnh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mb36n"]
@@ -11,12 +12,15 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_xjoqe")
 
-[node name="MovementComponent" parent="." instance=ExtResource("2_w2xnh")]
-speed = 1000.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(184, 0)
 shape = SubResource("RectangleShape2D_mb36n")
+
+[node name="LifetimeComponent" parent="." node_paths=PackedStringArray("visible_on_screen_notifier") instance=ExtResource("2_64nuv")]
+visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")
+
+[node name="MovementComponent" parent="." instance=ExtResource("2_w2xnh")]
+speed = 1000.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(184, -5.96046e-08)
@@ -32,4 +36,3 @@ offset_bottom = 4.0
 grow_vertical = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://1kc1srny6n4c"]
+[gd_scene load_steps=5 format=3 uid="uid://1kc1srny6n4c"]
 
 [ext_resource type="Script" path="res://scenes/enemies/bullet.gd" id="1_jgfq0"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_5uv35"]
+[ext_resource type="PackedScene" uid="uid://du0c02bx6fs4c" path="res://scenes/components/lifetime_component.tscn" id="3_dx7gw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1blke"]
 size = Vector2(12, 12)
@@ -10,11 +11,15 @@ size = Vector2(12, 12)
 collision_layer = 16
 script = ExtResource("1_jgfq0")
 
-[node name="MovementComponent" parent="." instance=ExtResource("2_5uv35")]
-speed = 300.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1blke")
+
+[node name="LifetimeComponent" parent="." node_paths=PackedStringArray("visible_on_screen_notifier") instance=ExtResource("3_dx7gw")]
+visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")
+lifetime = 5.0
+
+[node name="MovementComponent" parent="." instance=ExtResource("2_5uv35")]
+speed = 300.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-3.5, 1.42109e-14)
@@ -35,4 +40,3 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

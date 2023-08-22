@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dro1lmf7r4t40"]
+[gd_scene load_steps=4 format=3 uid="uid://dro1lmf7r4t40"]
 
 [ext_resource type="Script" path="res://scenes/enemies/bomb.gd" id="1_iaij1"]
+[ext_resource type="PackedScene" uid="uid://du0c02bx6fs4c" path="res://scenes/components/lifetime_component.tscn" id="2_ehjk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1blke"]
 size = Vector2(12, 12)
@@ -11,6 +12,10 @@ script = ExtResource("1_iaij1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1blke")
+
+[node name="LifetimeComponent" parent="." node_paths=PackedStringArray("visible_on_screen_notifier") instance=ExtResource("2_ehjk3")]
+visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")
+lifetime = 10.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-3.5, 1.42109e-14)
@@ -31,4 +36,3 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
