@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqhxm0di6ey0l"]
+[gd_scene load_steps=4 format=3 uid="uid://bqhxm0di6ey0l"]
 
 [ext_resource type="Script" path="res://scenes/player/laser.gd" id="1_xjoqe"]
+[ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_w2xnh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mb36n"]
 size = Vector2(368, 8)
@@ -9,6 +10,9 @@ size = Vector2(368, 8)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_xjoqe")
+
+[node name="MovementComponent" parent="." instance=ExtResource("2_w2xnh")]
+speed = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(184, 0)

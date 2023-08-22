@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://1kc1srny6n4c"]
+[gd_scene load_steps=4 format=3 uid="uid://1kc1srny6n4c"]
 
 [ext_resource type="Script" path="res://scenes/enemies/bullet.gd" id="1_jgfq0"]
+[ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_5uv35"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1blke"]
 size = Vector2(12, 12)
@@ -8,6 +9,9 @@ size = Vector2(12, 12)
 [node name="Bullet" type="Area2D"]
 collision_layer = 16
 script = ExtResource("1_jgfq0")
+
+[node name="MovementComponent" parent="." instance=ExtResource("2_5uv35")]
+speed = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1blke")

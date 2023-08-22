@@ -3,7 +3,6 @@ extends Area2D
 signal player_killed
 
 const laser_scene = preload("laser.tscn")
-const speed: float = 500
 
 
 func _process(_delta):
@@ -11,10 +10,9 @@ func _process(_delta):
         fire_laser()
 
 
-func _physics_process(delta):
-    var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-    update_horizontal_orientation(direction.x)
-    position += direction * speed * delta
+func _physics_process(_delta):
+    $MovementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+    update_horizontal_orientation($MovementComponent.direction.x)
     position.y = clamp(position.y, $CollisionShape2D.shape.size.y + 5, 648 - $CollisionShape2D.shape.size.y - 5)
 
 
