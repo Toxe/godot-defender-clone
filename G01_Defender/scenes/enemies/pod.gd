@@ -12,7 +12,7 @@ func swarmer_position() -> Vector2:
 
 
 func swarmer_direction() -> Vector2:
-    var direction = Vector2.RIGHT if $MovementComponent.velocity.x >= 0 else Vector2.LEFT
+    var direction = Vector2.RIGHT if $MovementComponent.direction.x >= 0 else Vector2.LEFT
     return direction.rotated(deg_to_rad(randf_range(-swarmer_spawn_direction_rotation, swarmer_spawn_direction_rotation)))
 
 
@@ -22,5 +22,5 @@ func _on_hitbox_component_destroyed():
         var swarmer = swarmer_scene.instantiate()
         var swarmer_movement_component = swarmer.get_node("MovementComponent") as MovementComponent
         swarmer.global_position = swarmer_position()
-        swarmer_movement_component.velocity = swarmer_direction() * swarmer_movement_component.velocity.length()
+        swarmer_movement_component.direction = swarmer_direction()
         get_parent().call_deferred("add_child", swarmer)
