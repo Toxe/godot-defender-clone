@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://du0c02bx6fs4c"]
+
+[ext_resource type="Script" path="res://scenes/components/lifetime_component.gd" id="1_x4i2x"]
+
+[node name="LifetimeComponent" type="Node"]
+script = ExtResource("1_x4i2x")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
