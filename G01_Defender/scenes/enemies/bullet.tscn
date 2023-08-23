@@ -1,18 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://1kc1srny6n4c"]
+[gd_scene load_steps=6 format=3 uid="uid://1kc1srny6n4c"]
 
 [ext_resource type="Script" path="res://scenes/enemies/bullet.gd" id="1_jgfq0"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_5uv35"]
 [ext_resource type="PackedScene" uid="uid://du0c02bx6fs4c" path="res://scenes/components/lifetime_component.tscn" id="3_dx7gw"]
+[ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="4_v5lsu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1blke"]
 size = Vector2(12, 12)
 
-[node name="Bullet" type="Area2D"]
-collision_layer = 16
+[node name="Bullet" type="Node2D"]
 script = ExtResource("1_jgfq0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_1blke")
 
 [node name="LifetimeComponent" parent="." node_paths=PackedStringArray("visible_on_screen_notifier") instance=ExtResource("3_dx7gw")]
 visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")
@@ -20,6 +17,13 @@ lifetime = 5.0
 
 [node name="MovementComponent" parent="." instance=ExtResource("2_5uv35")]
 speed = 300.0
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_v5lsu")]
+collision_layer = 16
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_1blke")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-3.5, 1.42109e-14)
@@ -38,5 +42,3 @@ offset_right = 6.0
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

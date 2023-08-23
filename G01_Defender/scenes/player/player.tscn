@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwjdmjmwuyqem"]
+[gd_scene load_steps=7 format=3 uid="uid://cwjdmjmwuyqem"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_n4fie"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_s2asx"]
+[ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="3_sl77d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk32p"]
 size = Vector2(64, 20)
@@ -12,16 +13,19 @@ size = Vector2(4608, 1296)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbp18"]
 size = Vector2(2304, 1296)
 
-[node name="Player" type="Area2D"]
-collision_mask = 18
+[node name="Player" type="Node2D"]
 script = ExtResource("1_n4fie")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_jk32p")
 
 [node name="MovementComponent" parent="." instance=ExtResource("2_s2asx")]
 speed = 500.0
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_sl77d")]
+collision_layer = 1
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_jk32p")
 
 [node name="LaserSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(33, 6)
@@ -104,6 +108,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WrapLevelChunks"]
 shape = SubResource("RectangleShape2D_bbp18")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="destroyed" from="HitboxComponent" to="." method="_on_hitbox_component_destroyed"]
 [connection signal="area_exited" from="WrapEnemies" to="." method="_on_wrap_enemies_area_exited"]
 [connection signal="area_exited" from="WrapLevelChunks" to="." method="_on_wrap_level_chunks_area_exited"]

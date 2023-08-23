@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 signal player_killed
 
@@ -13,7 +13,7 @@ func _process(_delta):
 func _physics_process(_delta):
     $MovementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
     update_horizontal_orientation($MovementComponent.direction.x)
-    position.y = clamp(position.y, $CollisionShape2D.shape.size.y + 5, 648 - $CollisionShape2D.shape.size.y - 5)
+    position.y = clamp(position.y, $HitboxComponent/CollisionShape2D.shape.size.y + 5, 648 - $HitboxComponent/CollisionShape2D.shape.size.y - 5)
 
 
 func fire_laser():
@@ -39,7 +39,7 @@ func wrap_around_level(node: Node2D):
         node.position.x -= 3*1152
 
 
-func _on_area_entered(_area):
+func _on_hitbox_component_destroyed():
     player_killed.emit()
 
 
