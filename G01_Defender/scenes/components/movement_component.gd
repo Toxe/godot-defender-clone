@@ -1,5 +1,7 @@
 class_name MovementComponent extends Node
 
+@export var has_vertical_wrap_around := false
+
 @export var speed := 0.0:
     get:
         return speed
@@ -16,9 +18,20 @@ class_name MovementComponent extends Node
 
 @onready var _velocity: Vector2 = direction.normalized() * speed
 
-
 func _physics_process(delta):
-    get_parent().position += _velocity * delta
+    var pos = get_parent().position + _velocity * delta
+    if has_vertical_wrap_around:
+        pos = vertical_wrap_around(pos)
+    get_parent().position = pos
+
+
+func vertical_wrap_around(pos: Vector2) -> Vector2:
+    var viewport_size = get_viewport().get_visible_rect().size
+    if pos.y < 0:
+        pos.y += viewport_size.y
+    elif pos.y >= viewport_size.y:
+        pos.y -= viewport_size.y
+    return pos
 
 
 func velocity() -> Vector2:
