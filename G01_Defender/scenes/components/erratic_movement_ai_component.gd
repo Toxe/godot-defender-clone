@@ -17,7 +17,7 @@ func _draw():
     draw_arc(Vector2.ZERO, length, deg_to_rad(angle + add_angle), deg_to_rad(-angle + add_angle), 10, Color.DIM_GRAY, width)
     draw_line(Vector2.ZERO, length * Vector2.RIGHT.rotated(deg_to_rad(angle + add_angle)), Color.DIM_GRAY, width)
     draw_line(Vector2.ZERO, length * Vector2.RIGHT.rotated(deg_to_rad(-angle + add_angle)), Color.DIM_GRAY, width)
-    draw_line(Vector2.ZERO, length * movement_component.velocity_.normalized(), Color.YELLOW, width)
+    draw_line(Vector2.ZERO, length * movement_component.velocity().normalized(), Color.YELLOW, width)
 
 
 func change_direction():

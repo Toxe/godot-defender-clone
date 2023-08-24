@@ -5,20 +5,24 @@ class_name MovementComponent extends Node
         return speed
     set(value):
         speed = value
-        velocity_ = direction.normalized() * speed
+        _velocity = direction.normalized() * speed
 
 @export var direction := Vector2.ZERO:
     get:
         return direction
     set(value):
         direction = value
-        velocity_ = direction.normalized() * speed
+        _velocity = direction.normalized() * speed
 
-@onready var velocity_: Vector2 = direction.normalized() * speed
+@onready var _velocity: Vector2 = direction.normalized() * speed
 
 
 func _physics_process(delta):
-    get_parent().position += velocity_ * delta
+    get_parent().position += _velocity * delta
+
+
+func velocity() -> Vector2:
+    return _velocity
 
 
 # set velocity and automatically update speed and direction
