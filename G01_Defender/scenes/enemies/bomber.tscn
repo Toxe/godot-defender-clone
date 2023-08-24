@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cecxlt77ef7sj"]
+[gd_scene load_steps=8 format=3 uid="uid://cecxlt77ef7sj"]
 
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="1_palca"]
+[ext_resource type="PackedScene" uid="uid://ov5vv7r6yy8p" path="res://scenes/components/erratic_movement_ai_component.tscn" id="2_qwe28"]
 [ext_resource type="PackedScene" uid="uid://ciovhjmxtwyjt" path="res://scenes/components/shooting_component.tscn" id="2_x5jbv"]
 [ext_resource type="PackedScene" uid="uid://dro1lmf7r4t40" path="res://scenes/enemies/bomb.tscn" id="3_2ih8u"]
 [ext_resource type="PackedScene" uid="uid://chpsvtbd20bmx" path="res://scenes/components/repeat_shooting_component.tscn" id="4_405ek"]
@@ -13,7 +14,11 @@ size = Vector2(38, 32)
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_palca")]
 speed = 55.0
-direction = Vector2(-1, 0)
+
+[node name="ErraticMovementAIComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("2_qwe28")]
+movement_component = NodePath("../MovementComponent")
+min_direction_change_time = 3.0
+max_direction_change_time = 5.0
 
 [node name="ShootingComponent" parent="." instance=ExtResource("2_x5jbv")]
 shot_scene = ExtResource("3_2ih8u")

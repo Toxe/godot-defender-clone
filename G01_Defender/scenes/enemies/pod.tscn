@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbf0qkjn70x4n"]
+[gd_scene load_steps=6 format=3 uid="uid://bbf0qkjn70x4n"]
 
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="1_htxr3"]
 [ext_resource type="Script" path="res://scenes/enemies/pod.gd" id="1_vlk47"]
+[ext_resource type="PackedScene" uid="uid://ov5vv7r6yy8p" path="res://scenes/components/erratic_movement_ai_component.tscn" id="3_17cf2"]
 [ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="4_o8rjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wul00"]
@@ -12,7 +13,12 @@ script = ExtResource("1_vlk47")
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_htxr3")]
 speed = 40.0
-direction = Vector2(-1, 0)
+
+[node name="ErraticMovementAIComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_17cf2")]
+movement_component = NodePath("../MovementComponent")
+angle = 10.0
+min_direction_change_time = 3.0
+max_direction_change_time = 4.0
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_o8rjc")]
 
