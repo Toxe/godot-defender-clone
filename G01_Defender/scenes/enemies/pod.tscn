@@ -12,6 +12,7 @@ size = Vector2(48, 48)
 script = ExtResource("1_vlk47")
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_htxr3")]
+has_vertical_wrap_around = true
 speed = 40.0
 
 [node name="ErraticMovementAIComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_17cf2")]
