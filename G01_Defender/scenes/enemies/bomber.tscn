@@ -13,7 +13,7 @@ size = Vector2(38, 32)
 [node name="Bomber" type="Node2D"]
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_palca")]
-has_vertical_wrap_around = true
+can_wrap_around_vertically = true
 speed = 55.0
 
 [node name="ErraticMovementAIComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("2_qwe28")]
