@@ -44,7 +44,7 @@ func _on_hitbox_component_destroyed():
 
 
 func _on_wrap_enemies_area_exited(area: Area2D):
-    wrap_around_level(area)
+    wrap_around_level(area.get_parent())
 
 
 func _on_wrap_level_chunks_area_exited(area: Area2D):
