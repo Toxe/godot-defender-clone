@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://w0jtokddq4er"]
+[gd_scene load_steps=13 format=3 uid="uid://w0jtokddq4er"]
 
 [ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_gi007"]
 [ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://scenes/player/player.tscn" id="2_ox6bm"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dd0hlvdakdx6j" path="res://scenes/enemies/baiter.tscn" id="9_6enpe"]
 [ext_resource type="PackedScene" uid="uid://cecxlt77ef7sj" path="res://scenes/enemies/bomber.tscn" id="10_qpd2k"]
 [ext_resource type="PackedScene" uid="uid://bbf0qkjn70x4n" path="res://scenes/enemies/pod.tscn" id="11_rbwa7"]
+[ext_resource type="PackedScene" uid="uid://dmmocawjehv26" path="res://scenes/human/human.tscn" id="12_a20oh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_gi007")
@@ -26,7 +27,7 @@ position = Vector2(-1152, 0)
 position = Vector2(1152, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_ox6bm")]
-position = Vector2(188, 323)
+position = Vector2(217, 299)
 
 [node name="Lander" parent="." instance=ExtResource("7_1s4ej")]
 position = Vector2(897, 180)
@@ -51,5 +52,14 @@ position = Vector2(989, 82)
 
 [node name="Pod" parent="." instance=ExtResource("11_rbwa7")]
 position = Vector2(964, 246)
+
+[node name="Human1" parent="." instance=ExtResource("12_a20oh")]
+position = Vector2(296, 593)
+
+[node name="Human2" parent="." instance=ExtResource("12_a20oh")]
+position = Vector2(423, 593)
+
+[node name="Human3" parent="." instance=ExtResource("12_a20oh")]
+position = Vector2(814, 593)
 
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
