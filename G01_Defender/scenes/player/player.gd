@@ -4,6 +4,9 @@ signal player_killed
 
 const laser_scene = preload("laser.tscn")
 
+@onready var movementComponent = $MovementComponent
+@onready var player_height: float = $HitboxComponent/CollisionShape2D.shape.size.y
+
 
 func _process(_delta):
     if Input.is_action_just_pressed("fire"):
@@ -11,9 +14,14 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
-    $MovementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-    update_horizontal_orientation($MovementComponent.direction.x)
-    position.y = clamp(position.y, $HitboxComponent/CollisionShape2D.shape.size.y + 5, 648 - $HitboxComponent/CollisionShape2D.shape.size.y - 5)
+    movementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+    update_horizontal_orientation(movementComponent.direction.x)
+    clamp_vertical_position()
+
+
+func clamp_vertical_position():
+    var viewport_size = get_viewport().get_visible_rect().size
+    position.y = clamp(position.y, player_height + 5, viewport_size.y - player_height - 5)
 
 
 func fire_laser():
