@@ -16,6 +16,9 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_gi007")
 
+[node name="UpdateWindowTitleTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="LevelChunks" type="Node" parent="."]
 
 [node name="LevelChunk01" parent="LevelChunks" instance=ExtResource("2_r1lcs")]
@@ -62,4 +65,5 @@ position = Vector2(423, 593)
 [node name="Human3" parent="." instance=ExtResource("12_a20oh")]
 position = Vector2(814, 593)
 
+[connection signal="timeout" from="UpdateWindowTitleTimer" to="." method="_on_update_window_title_timer_timeout"]
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
