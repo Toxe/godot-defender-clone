@@ -15,7 +15,6 @@ func _process(_delta):
 
 func _physics_process(_delta):
     movementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-    update_horizontal_orientation(movementComponent.direction.x)
     clamp_vertical_position()
 
 
@@ -26,17 +25,10 @@ func clamp_vertical_position():
 
 func fire_laser():
     var laser = laser_scene.instantiate()
-    laser.setup($LaserSpawnPoint.global_position, get_horizontal_orientation())
+    var laser_movement_component = laser.get_node("MovementComponent") as MovementComponent
+    laser.global_position = $LaserSpawnPoint.global_position
+    laser_movement_component.direction = Vector2.LEFT if $FlipOrientationComponent.orientation == FlipOrientationComponent.Orientation.left else Vector2.RIGHT
     get_parent().add_child(laser)
-
-
-func get_horizontal_orientation() -> float:
-    return scale.x
-
-
-func update_horizontal_orientation(orientation: float):
-    if not is_zero_approx(orientation) and not is_equal_approx(orientation, get_horizontal_orientation()):
-        scale.x = 1.0 if orientation > 0.0 else -1.0
 
 
 # wrap around to the other side of the level

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwjdmjmwuyqem"]
+[gd_scene load_steps=8 format=3 uid="uid://cwjdmjmwuyqem"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_n4fie"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_s2asx"]
+[ext_resource type="PackedScene" uid="uid://beflrdpw6vd30" path="res://scenes/components/flip_orientation_component.tscn" id="3_d6mi6"]
 [ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="3_sl77d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk32p"]
@@ -18,6 +19,9 @@ script = ExtResource("1_n4fie")
 
 [node name="MovementComponent" parent="." instance=ExtResource("2_s2asx")]
 speed = 500.0
+
+[node name="FlipOrientationComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_d6mi6")]
+movement_component = NodePath("../MovementComponent")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_sl77d")]
 collision_layer = 1

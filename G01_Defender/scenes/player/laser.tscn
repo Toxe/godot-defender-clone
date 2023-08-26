@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqhxm0di6ey0l"]
+[gd_scene load_steps=7 format=3 uid="uid://bqhxm0di6ey0l"]
 
 [ext_resource type="Script" path="res://scenes/player/laser.gd" id="1_xjoqe"]
 [ext_resource type="PackedScene" uid="uid://du0c02bx6fs4c" path="res://scenes/components/lifetime_component.tscn" id="2_64nuv"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_w2xnh"]
 [ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="4_d8jgb"]
+[ext_resource type="PackedScene" uid="uid://beflrdpw6vd30" path="res://scenes/components/flip_orientation_component.tscn" id="4_in35m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mb36n"]
 size = Vector2(368, 8)
@@ -16,6 +17,9 @@ visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")
 
 [node name="MovementComponent" parent="." instance=ExtResource("2_w2xnh")]
 speed = 1000.0
+
+[node name="FlipOrientationComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("4_in35m")]
+movement_component = NodePath("../MovementComponent")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_d8jgb")]
 collision_layer = 4
