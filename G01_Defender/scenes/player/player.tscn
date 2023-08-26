@@ -15,6 +15,7 @@ size = Vector2(4608, 1296)
 size = Vector2(2304, 1296)
 
 [node name="Player" type="Node2D"]
+z_index = 1
 script = ExtResource("1_n4fie")
 
 [node name="MovementComponent" parent="." instance=ExtResource("2_s2asx")]
