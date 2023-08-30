@@ -6,7 +6,7 @@ func _ready():
 
 
 func update_window_title():
-    get_window().title = "Godot Defender Clone    [milestone 3, %d FPS]" % [Performance.get_monitor(Performance.TIME_FPS)]
+    get_window().title = "Godot Defender Clone    [milestone 4, %d FPS]" % [Performance.get_monitor(Performance.TIME_FPS)]
 
 
 func _on_player_player_killed():
