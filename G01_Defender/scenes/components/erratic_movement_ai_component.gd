@@ -10,16 +10,6 @@ func _ready():
     change_direction()
 
 
-func _draw():
-    const width = 2
-    var length = movement_component.speed
-    var add_angle = 180.0 if movement_component.direction.x < 0 else 0.0
-    draw_arc(Vector2.ZERO, length, deg_to_rad(angle / 2.0 + add_angle), deg_to_rad(-angle / 2.0 + add_angle), 10, Color.DIM_GRAY, width)
-    draw_line(Vector2.ZERO, length * Vector2.RIGHT.rotated(deg_to_rad(angle / 2.0 + add_angle)), Color.DIM_GRAY, width)
-    draw_line(Vector2.ZERO, length * Vector2.RIGHT.rotated(deg_to_rad(-angle / 2.0 + add_angle)), Color.DIM_GRAY, width)
-    draw_line(Vector2.ZERO, length * movement_component.velocity().normalized(), Color.YELLOW, width)
-
-
 func change_direction():
     assert(movement_component != null)
 
@@ -32,7 +22,6 @@ func change_direction():
     movement_component.direction = Vector2(sign(movement_component.direction.x), 0).rotated(deg_to_rad(rot_angle)).normalized()
 
     $Timer.start(randf_range(min_direction_change_time, max_direction_change_time))
-    queue_redraw()
 
 
 func pick_random_direction() -> Vector2:
