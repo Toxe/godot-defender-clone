@@ -24,11 +24,8 @@ func clamp_vertical_position():
 
 
 func fire_laser():
-    var laser = laser_scene.instantiate()
-    var laser_movement_component = laser.get_node("MovementComponent") as MovementComponent
-    laser.global_position = $LaserSpawnPoint.global_position
-    laser_movement_component.direction = Vector2.LEFT if $FlipOrientationComponent.orientation == FlipOrientationComponent.Orientation.left else Vector2.RIGHT
-    get_parent().add_child(laser)
+    var direction = Vector2.LEFT if $FlipOrientationComponent.orientation == FlipOrientationComponent.Orientation.left else Vector2.RIGHT
+    $ShootingComponent.shoot(direction)
 
 
 # wrap around to the other side of the level

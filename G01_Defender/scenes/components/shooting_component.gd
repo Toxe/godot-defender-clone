@@ -24,12 +24,19 @@ func stop_shooting():
     $Timer.stop()
 
 
-func shoot():
-    var shot = shot_scene.instantiate()
-    shot.setup(global_position)
+func shoot(direction: Vector2 = Vector2.ZERO) -> Node2D:
+    var shot = shot_scene.instantiate() as Node2D
+    shot.global_position = global_position
+
+    if shot.has_node("MovementComponent"):
+        var shot_movement_component = shot.get_node("MovementComponent") as MovementComponent
+        shot_movement_component.direction = direction
+
     get_parent().get_parent().add_child(shot)
     start_shooting()
     shot_fired.emit()
+
+    return shot
 
 
 func _on_timer_timeout():
