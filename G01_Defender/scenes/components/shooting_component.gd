@@ -4,7 +4,7 @@ signal shot_fired
 
 @export var shot_scene: PackedScene = null
 @export var visible_on_screen_notifier: VisibleOnScreenNotifier2D = null
-@export var shooting_ai_component: Node = null
+@export var shooting_strategy: Resource = null
 @export var min_shot_delay := 1.0
 @export var max_shot_delay := 2.0
 @export var one_shot := false
@@ -33,8 +33,8 @@ func shoot(direction: Vector2 = Vector2.ZERO) -> Node2D:
         var shot_movement_component = shot.get_node("MovementComponent") as MovementComponent
         shot_movement_component.direction = direction
 
-    if shooting_ai_component:
-        shooting_ai_component.update(shot, global_position)  # note: shot is not yet in the tree so shot.global_position is still (0,0) at this point
+    if shooting_strategy:
+        shooting_strategy.update(get_tree(), shot, global_position)
 
     get_parent().get_parent().add_child(shot)
     start_shooting()
