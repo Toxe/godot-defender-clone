@@ -6,6 +6,7 @@ signal shot_fired
 @export var visible_on_screen_notifier: VisibleOnScreenNotifier2D = null
 @export var min_shot_delay := 1.0
 @export var max_shot_delay := 2.0
+@export var one_shot := false
 
 
 func _ready():
@@ -15,7 +16,8 @@ func _ready():
 
 
 func start_shooting():
-    $Timer.start(randf_range(min_shot_delay, max_shot_delay))
+    if not one_shot:
+        $Timer.start(randf_range(min_shot_delay, max_shot_delay))
 
 
 func stop_shooting():
