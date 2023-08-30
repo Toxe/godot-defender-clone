@@ -17,7 +17,7 @@ speed = 40.0
 
 [node name="ErraticMovementAIComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_17cf2")]
 movement_component = NodePath("../MovementComponent")
-angle = 10.0
+angle = 30.0
 min_direction_change_time = 3.0
 max_direction_change_time = 4.0
 
