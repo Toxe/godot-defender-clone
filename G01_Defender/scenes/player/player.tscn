@@ -14,7 +14,7 @@ size = Vector2(4608, 1296)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbp18"]
 size = Vector2(2304, 1296)
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_n4fie")
 
