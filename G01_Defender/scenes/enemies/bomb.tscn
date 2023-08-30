@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://dro1lmf7r4t40"]
+[gd_scene load_steps=4 format=3 uid="uid://dro1lmf7r4t40"]
 
-[ext_resource type="Script" path="res://scenes/enemies/bomb.gd" id="1_iaij1"]
 [ext_resource type="PackedScene" uid="uid://du0c02bx6fs4c" path="res://scenes/components/lifetime_component.tscn" id="2_ehjk3"]
 [ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="2_l8iuw"]
 
@@ -8,7 +7,6 @@
 size = Vector2(12, 12)
 
 [node name="Bomb" type="Node2D"]
-script = ExtResource("1_iaij1")
 
 [node name="LifetimeComponent" parent="." node_paths=PackedStringArray("visible_on_screen_notifier") instance=ExtResource("2_ehjk3")]
 visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")

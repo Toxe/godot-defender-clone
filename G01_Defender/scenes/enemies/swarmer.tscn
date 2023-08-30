@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bowkvlw8hl5ej"]
+[gd_scene load_steps=8 format=3 uid="uid://bowkvlw8hl5ej"]
 
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="1_wypk8"]
 [ext_resource type="PackedScene" uid="uid://ciovhjmxtwyjt" path="res://scenes/components/shooting_component.tscn" id="2_vcr6r"]
 [ext_resource type="PackedScene" uid="uid://ov5vv7r6yy8p" path="res://scenes/components/erratic_movement_ai_component.tscn" id="2_vhsf0"]
+[ext_resource type="PackedScene" uid="uid://ciuc2h8kbi5xk" path="res://scenes/components/enemy_shooting_at_player_ai_component.tscn" id="3_0ee2t"]
 [ext_resource type="PackedScene" uid="uid://1kc1srny6n4c" path="res://scenes/enemies/bullet.tscn" id="3_6gpd0"]
 [ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="4_lo3fo"]
 
@@ -21,9 +22,13 @@ angle = 45.0
 min_direction_change_time = 0.5
 max_direction_change_time = 1.0
 
-[node name="ShootingComponent" parent="." node_paths=PackedStringArray("visible_on_screen_notifier") instance=ExtResource("2_vcr6r")]
+[node name="EnemyShootingAtPlayerAIComponent" parent="." instance=ExtResource("3_0ee2t")]
+spread_angle = 45.0
+
+[node name="ShootingComponent" parent="." node_paths=PackedStringArray("visible_on_screen_notifier", "shooting_ai_component") instance=ExtResource("2_vcr6r")]
 shot_scene = ExtResource("3_6gpd0")
 visible_on_screen_notifier = NodePath("../VisibleOnScreenNotifier2D")
+shooting_ai_component = NodePath("../EnemyShootingAtPlayerAIComponent")
 min_shot_delay = 3.0
 max_shot_delay = 4.0
 
