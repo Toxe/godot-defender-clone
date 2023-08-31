@@ -1,11 +1,12 @@
 class_name Game extends Node
 
 const main_level_scene = preload("res://scenes/levels/main/main.tscn")
+const title_level_scene = preload("res://scenes/levels/title/title.tscn")
 
 
 func _ready():
     update_window_title()
-    load_level(main_level_scene)
+    load_level(title_level_scene)
 
 
 func load_level(level_scene: Resource):
