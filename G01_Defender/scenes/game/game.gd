@@ -1,14 +1,15 @@
 class_name Game extends Node
 
+const main_level_scene = preload("res://scenes/levels/main/main.tscn")
+
 
 func _ready():
     update_window_title()
-    load_level("main")
+    load_level(main_level_scene)
 
 
-func load_level(level_name: String):
-    var level = load("res://scenes/levels/%s.tscn" % level_name).instantiate() as Node
-    add_child(level)
+func load_level(level_scene: Resource):
+    add_child(level_scene.instantiate())
 
 
 func update_window_title():
