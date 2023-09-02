@@ -1,7 +1,16 @@
-extends Node
+class_name TitleScene extends Node
+
+signal start_game
 
 @onready var screens = [$TitleScreen, $HighScoresScreen, $EnemiesScreen]
 var current_screen_index := 0
+
+
+func _unhandled_input(event: InputEvent):
+    if event is InputEventKey:
+        if event.is_pressed() and not event.is_echo():
+            start_game.emit()
+            get_viewport().set_input_as_handled()
 
 
 func switch_to_next_screen():

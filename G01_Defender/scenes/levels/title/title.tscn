@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/levels/title/title.gd" id="1_18qxa"]
 
-[node name="Title" type="Node"]
+[node name="TitleScene" type="Node"]
 script = ExtResource("1_18qxa")
 
 [node name="TitleScreen" type="Control" parent="."]

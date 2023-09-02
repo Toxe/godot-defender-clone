@@ -1,5 +1,7 @@
-extends Node
+class_name MainLevel extends Node
+
+signal game_finished
 
 
 func _on_player_player_killed():
-    get_tree().reload_current_scene()
+    game_finished.emit()

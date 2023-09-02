@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bbf0qkjn70x4n" path="res://scenes/enemies/pod.tscn" id="11_rbwa7"]
 [ext_resource type="PackedScene" uid="uid://dmmocawjehv26" path="res://scenes/human/human.tscn" id="12_a20oh"]
 
-[node name="Main" type="Node"]
+[node name="MainLevel" type="Node"]
 script = ExtResource("1_gi007")
 
 [node name="LevelChunks" type="Node" parent="."]
