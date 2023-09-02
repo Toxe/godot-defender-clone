@@ -8,9 +8,10 @@ const laser_scene = preload("laser.tscn")
 @onready var player_height: float = $HitboxComponent/CollisionShape2D.shape.size.y
 
 
-func _process(_delta):
-    if Input.is_action_just_pressed("fire"):
+func _unhandled_input(event):
+    if event.is_action_pressed("fire"):
         fire_laser()
+        get_viewport().set_input_as_handled()
 
 
 func _physics_process(_delta):
