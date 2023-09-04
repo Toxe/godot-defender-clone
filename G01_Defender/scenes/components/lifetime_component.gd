@@ -1,6 +1,6 @@
 class_name LifetimeComponent extends Node
 
-signal destroyed()
+signal destroyed
 
 @export var visible_on_screen_notifier: VisibleOnScreenNotifier2D = null
 @export var lifetime := 0.0
