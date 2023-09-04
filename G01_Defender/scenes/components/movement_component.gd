@@ -43,3 +43,7 @@ func velocity() -> Vector2:
 func set_velocity(new_velocity: Vector2):
     direction = new_velocity.normalized()
     speed = new_velocity.length()
+
+
+func disable():
+    set_physics_process(false)
