@@ -1,6 +1,9 @@
 class_name HitboxComponent extends Area2D
 
-signal destroyed()
+signal collided
+signal destroyed
+
+@export var destroy_parent := true
 
 
 func disable():
@@ -8,5 +11,7 @@ func disable():
 
 
 func _on_area_entered(_area):
-    destroyed.emit()
-    get_parent().queue_free()
+    collided.emit()
+    if destroy_parent:
+        get_parent().queue_free()
+        destroyed.emit()
