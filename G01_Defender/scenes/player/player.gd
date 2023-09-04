@@ -37,7 +37,21 @@ func wrap_around_level(node: Node2D):
         node.position.x -= 3*1152
 
 
-func _on_hitbox_component_destroyed():
+func _on_hitbox_component_collided():
+    # disable input, physics processing, movement and collision
+    set_process_unhandled_input(false)
+    set_physics_process(false)
+    $HitboxComponent.disable()
+    $MovementComponent.disable()
+
+    # hide the sprite and center the camera
+    $Sprite.visible = false
+    $Camera2D.position.x = 0
+
+    # play explosion particle effect and wait until it ends
+    $ExplosionParticleEffect.emitting = true
+    await get_tree().create_timer($ExplosionParticleEffect.lifetime).timeout
+
     player_killed.emit()
 
 
