@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b04um8wjch62q"]
+[gd_scene load_steps=10 format=3 uid="uid://b04um8wjch62q"]
 
+[ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_1jb2s"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="1_8p8dp"]
 [ext_resource type="PackedScene" uid="uid://ciovhjmxtwyjt" path="res://scenes/components/shooting_component.tscn" id="2_qtc2j"]
 [ext_resource type="PackedScene" uid="uid://ov5vv7r6yy8p" path="res://scenes/components/erratic_movement_ai_component.tscn" id="2_wqbu1"]
@@ -15,6 +16,8 @@ spread_angle = 60.0
 size = Vector2(48, 48)
 
 [node name="Mutant" type="Node2D"]
+script = ExtResource("1_1jb2s")
+score = 150
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_8p8dp")]
 can_wrap_around_vertically = true

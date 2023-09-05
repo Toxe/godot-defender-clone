@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cecxlt77ef7sj"]
+[gd_scene load_steps=9 format=3 uid="uid://cecxlt77ef7sj"]
 
+[ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_cqr4t"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="1_palca"]
 [ext_resource type="PackedScene" uid="uid://ov5vv7r6yy8p" path="res://scenes/components/erratic_movement_ai_component.tscn" id="2_qwe28"]
 [ext_resource type="PackedScene" uid="uid://ciovhjmxtwyjt" path="res://scenes/components/shooting_component.tscn" id="2_x5jbv"]
@@ -11,6 +12,8 @@
 size = Vector2(38, 32)
 
 [node name="Bomber" type="Node2D"]
+script = ExtResource("1_cqr4t")
+score = 250
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_palca")]
 can_wrap_around_vertically = true

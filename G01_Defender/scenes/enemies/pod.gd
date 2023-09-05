@@ -1,4 +1,4 @@
-extends Node2D
+extends Enemy
 
 const swarmer_scene = preload("swarmer.tscn")
 
