@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbtkuthn34k5"]
+[gd_scene load_steps=3 format=3 uid="uid://dbtkuthn34k5"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_m8v50"]
+[ext_resource type="PackedScene" uid="uid://xcxg1o0r63yx" path="res://scenes/components/high_score_manager_component.tscn" id="2_1wknr"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_m8v50")
+
+[node name="HighScoreManagerComponent" parent="." instance=ExtResource("2_1wknr")]
 
 [node name="UpdateWindowTitleTimer" type="Timer" parent="."]
 autostart = true

@@ -38,6 +38,12 @@ func _on_start_game():
 
 
 func _on_game_finished(score: int):
+    if score > 0:
+        if $HighScoreManagerComponent.could_be_added_to_high_scores(score):
+            if $HighScoreManagerComponent.would_be_new_highest_score(score):
+                pass  # TODO
+            $HighScoreManagerComponent.add(score)
+
     load_title_scene()
 
 
