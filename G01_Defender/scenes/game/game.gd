@@ -37,7 +37,7 @@ func _on_start_game():
     load_main_level()
 
 
-func _on_game_finished():
+func _on_game_finished(score: int):
     load_title_scene()
 
 
