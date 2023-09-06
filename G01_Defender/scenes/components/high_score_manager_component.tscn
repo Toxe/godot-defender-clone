@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xcxg1o0r63yx"]
+
+[ext_resource type="Script" path="res://scenes/components/high_score_manager_component.gd" id="1_bvw53"]
+
+[node name="HighScoreManagerComponent" type="Node"]
+script = ExtResource("1_bvw53")
