@@ -4,6 +4,7 @@ signal game_finished
 
 
 func _on_player_player_killed():
-    $GameOverLayer.visible = true
+    # show game over text, wait for a moment and then finish the game
+    $UI/GameOverLabel.visible = true
     await get_tree().create_timer(1.5).timeout
     game_finished.emit()
