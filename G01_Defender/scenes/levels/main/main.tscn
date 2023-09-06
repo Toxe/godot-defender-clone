@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://w0jtokddq4er"]
+[gd_scene load_steps=14 format=3 uid="uid://w0jtokddq4er"]
 
 [ext_resource type="Script" path="res://scenes/levels/main/main.gd" id="1_gi007"]
 [ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://scenes/player/player.tscn" id="2_ox6bm"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cecxlt77ef7sj" path="res://scenes/enemies/bomber.tscn" id="10_qpd2k"]
 [ext_resource type="PackedScene" uid="uid://bbf0qkjn70x4n" path="res://scenes/enemies/pod.tscn" id="11_rbwa7"]
 [ext_resource type="PackedScene" uid="uid://dmmocawjehv26" path="res://scenes/human/human.tscn" id="12_a20oh"]
+[ext_resource type="PackedScene" uid="uid://3hvryxrjv35b" path="res://scenes/ui/score_label.tscn" id="13_0vkbo"]
 
 [node name="MainLevel" type="Node"]
 script = ExtResource("1_gi007")
@@ -79,5 +80,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "GAME OVER"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" parent="UI" instance=ExtResource("13_0vkbo")]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 133.0
+offset_bottom = 55.0
 
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
