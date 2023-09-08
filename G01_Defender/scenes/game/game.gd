@@ -35,7 +35,7 @@ func load_level(scene: Resource) -> Node:
 
 
 func update_window_title():
-    get_window().title = "Godot Defender Clone    [milestone 4, %d FPS]" % [Performance.get_monitor(Performance.TIME_FPS)]
+    get_window().title = "Godot Defender Clone    [milestone 5, %d FPS]" % [Performance.get_monitor(Performance.TIME_FPS)]
 
 
 func _on_start_game():
