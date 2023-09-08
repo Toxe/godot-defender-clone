@@ -73,3 +73,7 @@ fire={
 2d_physics/layer_4="Level Chunk"
 2d_physics/layer_5="Enemy Bullet"
 2d_physics/layer_6="Human"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

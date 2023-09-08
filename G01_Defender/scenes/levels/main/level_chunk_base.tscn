@@ -12,11 +12,6 @@ monitoring = false
 position = Vector2(576, 324)
 shape = SubResource("RectangleShape2D_oow5e")
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
-
 [node name="Mountains" type="Line2D" parent="."]
 position = Vector2(0, 648)
 points = PackedVector2Array(0, -100, 1152, -100)
