@@ -11,6 +11,11 @@ func _ready():
     load_title_scene()
 
 
+func _unhandled_key_input(event: InputEvent):
+    if event.is_action_pressed("quit"):
+        get_tree().quit()
+
+
 func load_title_scene():
     var title = load_level(title_level_scene) as TitleScene
     title.start_game.connect(_on_start_game)

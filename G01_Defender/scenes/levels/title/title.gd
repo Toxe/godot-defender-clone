@@ -6,8 +6,10 @@ signal start_game
 var current_screen_index := 0
 
 
-func _unhandled_input(event: InputEvent):
-    if event is InputEventKey:
+func _unhandled_key_input(event: InputEvent):
+    if event.is_action_pressed("quit"):
+        pass  # let the game controller handle quit events
+    else:
         if event.is_pressed() and not event.is_echo():
             start_game.emit()
             get_viewport().set_input_as_handled()
