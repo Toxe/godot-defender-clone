@@ -7,23 +7,15 @@ var current_level: Node = null
 
 
 func _ready():
+    Events.start_game.connect(_on_start_game)
+    Events.game_finished.connect(_on_game_finished)
     update_window_title()
-    load_title_scene()
+    load_level(title_level_scene)
 
 
 func _unhandled_key_input(event: InputEvent):
     if event.is_action_pressed("quit"):
         get_tree().quit()
-
-
-func load_title_scene():
-    var title = load_level(title_level_scene) as TitleScene
-    title.start_game.connect(_on_start_game)
-
-
-func load_main_level():
-    var main_level = load_level(main_level_scene) as MainLevel
-    main_level.game_finished.connect(_on_game_finished)
 
 
 func load_level(scene: Resource) -> Node:
@@ -39,7 +31,7 @@ func update_window_title():
 
 
 func _on_start_game():
-    load_main_level()
+    load_level(main_level_scene)
 
 
 func _on_game_finished(score: int):
@@ -49,7 +41,7 @@ func _on_game_finished(score: int):
                 pass  # TODO
             $HighScoreManagerComponent.add(score)
 
-    load_title_scene()
+    load_level(title_level_scene)
 
 
 func _on_update_window_title_timer_timeout():

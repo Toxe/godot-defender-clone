@@ -1,7 +1,5 @@
 class_name TitleScene extends Node
 
-signal start_game
-
 @onready var screens = [$TitleScreen, $HighScoresScreen, $EnemiesScreen]
 var current_screen_index := 0
 
@@ -11,8 +9,8 @@ func _unhandled_key_input(event: InputEvent):
         pass  # let the game controller handle quit events
     else:
         if event.is_pressed() and not event.is_echo():
-            start_game.emit()
             get_viewport().set_input_as_handled()
+            Events.start_game.emit()
 
 
 func switch_to_next_screen():
