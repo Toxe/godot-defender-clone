@@ -1,6 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://w0jtokddq4er"]
 
 [ext_resource type="Script" path="res://scenes/levels/main/main.gd" id="1_gi007"]
+[ext_resource type="PackedScene" uid="uid://dya5c57yq76au" path="res://scenes/levels/main/score_counter.tscn" id="2_ld2hc"]
 [ext_resource type="PackedScene" uid="uid://cwjdmjmwuyqem" path="res://scenes/player/player.tscn" id="2_ox6bm"]
 [ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/main/level_chunk_01.tscn" id="2_r1lcs"]
 [ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/main/level_chunk_02.tscn" id="3_yhscp"]
@@ -12,10 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://cecxlt77ef7sj" path="res://scenes/enemies/bomber.tscn" id="10_qpd2k"]
 [ext_resource type="PackedScene" uid="uid://bbf0qkjn70x4n" path="res://scenes/enemies/pod.tscn" id="11_rbwa7"]
 [ext_resource type="PackedScene" uid="uid://dmmocawjehv26" path="res://scenes/human/human.tscn" id="12_a20oh"]
-[ext_resource type="PackedScene" uid="uid://3hvryxrjv35b" path="res://scenes/ui/score_counter.tscn" id="13_0vkbo"]
 
 [node name="MainLevel" type="Node"]
 script = ExtResource("1_gi007")
+
+[node name="ScoreCounter" parent="." node_paths=PackedStringArray("score_label") instance=ExtResource("2_ld2hc")]
+score_label = NodePath("../UI/ScoreLabel")
 
 [node name="LevelChunks" type="Node" parent="."]
 
@@ -81,10 +84,12 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "GAME OVER"
 
-[node name="ScoreCounter" parent="UI" instance=ExtResource("13_0vkbo")]
+[node name="ScoreLabel" type="Label" parent="UI"]
 offset_left = 20.0
 offset_top = 10.0
-offset_right = 133.0
+offset_right = 218.0
 offset_bottom = 55.0
+theme_override_font_sizes/font_size = 30
+text = "Score: 999999"
 
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]

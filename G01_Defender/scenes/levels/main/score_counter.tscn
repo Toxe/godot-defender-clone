@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dya5c57yq76au"]
+
+[ext_resource type="Script" path="res://scenes/levels/main/score_counter.gd" id="1_vcay6"]
+
+[node name="ScoreCounter" type="Node"]
+script = ExtResource("1_vcay6")
