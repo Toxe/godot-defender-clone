@@ -1,16 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://vj51vfvxtd4q"]
+[gd_scene load_steps=6 format=3 uid="uid://vj51vfvxtd4q"]
 
 [ext_resource type="Script" path="res://scenes/levels/title/title.gd" id="1_18qxa"]
 [ext_resource type="PackedScene" uid="uid://u6i0gxq0h47q" path="res://scenes/levels/title/title_screen.tscn" id="2_enhfa"]
-[ext_resource type="PackedScene" uid="uid://cb8ui74yxbgpp" path="res://scenes/levels/title/high_scores_screen.tscn" id="3_yhgu5"]
+[ext_resource type="PackedScene" uid="uid://7gksqojedsol" path="res://scenes/components/high_score_manager_component.tscn" id="2_q3umv"]
+[ext_resource type="PackedScene" uid="uid://cb8ui74yxbgpp" path="res://scenes/levels/title/high_scores_screen/high_scores_screen.tscn" id="3_84bo7"]
 [ext_resource type="PackedScene" uid="uid://nt1032h0wppn" path="res://scenes/levels/title/enemies_screen.tscn" id="4_rt0o6"]
 
 [node name="TitleScene" type="Node"]
 script = ExtResource("1_18qxa")
 
-[node name="TitleScreen" parent="." instance=ExtResource("2_enhfa")]
+[node name="HighScoreManagerComponent" parent="." instance=ExtResource("2_q3umv")]
 
-[node name="HighScoresScreen" parent="." instance=ExtResource("3_yhgu5")]
+[node name="TitleScreen" parent="." instance=ExtResource("2_enhfa")]
+visible = false
+
+[node name="HighScoresScreen" parent="." instance=ExtResource("3_84bo7")]
 visible = false
 
 [node name="EnemiesScreen" parent="." instance=ExtResource("4_rt0o6")]
