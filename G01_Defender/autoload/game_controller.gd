@@ -33,7 +33,7 @@ func create_window_title_update_timer():
 
 
 func update_window_title():
-    get_window().title = "Godot Defender Clone    [milestone 5, %d FPS]" % [Performance.get_monitor(Performance.TIME_FPS)]
+    get_window().title = "Godot Defender Clone    [milestone 6, %d FPS]" % [Performance.get_monitor(Performance.TIME_FPS)]
 
 
 func load_scene(scene: PackedScene):
