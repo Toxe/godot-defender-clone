@@ -64,5 +64,3 @@ curve = SubResource("Curve2D_hha5o")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="HumanSpawnPath"]
 rotation = 1.5708
-
-[connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]

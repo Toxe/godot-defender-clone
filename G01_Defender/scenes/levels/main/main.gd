@@ -6,6 +6,7 @@ const human_min_spawn_distance := 100.0
 
 
 func _ready():
+    Events.player_destroyed.connect(_on_player_destroyed)
     spawn_humans(8)
 
 
@@ -61,7 +62,7 @@ func human_spawn_rect(right_margin: float = 0.0) -> Rect2:
     return Rect2(left, top, 3.0 * 1152.0 - right_margin, bottom - top)
 
 
-func _on_player_player_killed():
+func _on_player_destroyed():
     # show game over text, wait for a moment and then finish the game
     $UI/GameOverLabel.visible = true
     await get_tree().create_timer(1.5).timeout

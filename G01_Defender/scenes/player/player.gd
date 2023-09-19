@@ -1,7 +1,5 @@
 extends Node2D
 
-signal player_killed
-
 const laser_scene = preload("laser.tscn")
 
 @onready var movementComponent = $MovementComponent
@@ -52,7 +50,7 @@ func _on_hitbox_component_collided():
     $ExplosionParticleEffect.emitting = true
     await get_tree().create_timer($ExplosionParticleEffect.lifetime).timeout
 
-    player_killed.emit()
+    Events.player_destroyed.emit()
 
 
 func _on_wrap_enemies_area_exited(area: Area2D):
