@@ -18,6 +18,7 @@ limit_bottom = 0
 position_smoothing_enabled = true
 
 [node name="WrapEnemies" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 34
 monitorable = false
@@ -26,6 +27,7 @@ monitorable = false
 shape = SubResource("RectangleShape2D_grh6j")
 
 [node name="WrapLevelChunks" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 monitorable = false
