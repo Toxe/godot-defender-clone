@@ -27,14 +27,6 @@ func fire_laser():
     $ShootingComponent.shoot(direction)
 
 
-# wrap around to the other side of the level
-func wrap_around_level(node: Node2D):
-    if node.global_position.x < global_position.x:
-        node.position.x += 3*1152
-    else:
-        node.position.x -= 3*1152
-
-
 func _on_hitbox_component_collided():
     # disable input, physics processing, movement and collision
     set_process_unhandled_input(false)
@@ -42,20 +34,14 @@ func _on_hitbox_component_collided():
     $HitboxComponent.disable()
     $MovementComponent.disable()
 
-    # hide the sprite and center the camera
+    # hide the sprite
     $Sprite.visible = false
-    $Camera2D.position.x = 0
+
+    # center the camera
+    $GameCamera.center_camera()
 
     # play explosion particle effect and wait until it ends
     $ExplosionParticleEffect.emitting = true
     await get_tree().create_timer($ExplosionParticleEffect.lifetime).timeout
 
     Events.player_destroyed.emit()
-
-
-func _on_wrap_enemies_area_exited(area: Area2D):
-    wrap_around_level(area.get_parent())
-
-
-func _on_wrap_level_chunks_area_exited(area: Area2D):
-    wrap_around_level(area)

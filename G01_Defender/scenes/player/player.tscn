@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwjdmjmwuyqem"]
+[gd_scene load_steps=12 format=3 uid="uid://cwjdmjmwuyqem"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_n4fie"]
 [ext_resource type="PackedScene" uid="uid://6kn3g63u5hm4" path="res://scenes/components/movement_component.tscn" id="2_s2asx"]
@@ -6,15 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bk00hc6aw3868" path="res://scenes/components/hitbox_component.tscn" id="3_sl77d"]
 [ext_resource type="PackedScene" uid="uid://ciovhjmxtwyjt" path="res://scenes/components/shooting_component.tscn" id="4_7dap3"]
 [ext_resource type="PackedScene" uid="uid://bqhxm0di6ey0l" path="res://scenes/player/laser.tscn" id="5_iymnm"]
+[ext_resource type="PackedScene" uid="uid://w6o1abab5bpu" path="res://scenes/game_camera/game_camera.tscn" id="7_axkr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk32p"]
 size = Vector2(64, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv862"]
-size = Vector2(4608, 1296)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbp18"]
-size = Vector2(2304, 1296)
 
 [sub_resource type="Gradient" id="Gradient_u6w3m"]
 offsets = PackedFloat32Array(0, 0.26506, 0.548193, 0.825301, 1)
@@ -60,11 +55,7 @@ destroy_parent = false
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_jk32p")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(300, 0)
-limit_top = 0
-limit_bottom = 0
-position_smoothing_enabled = true
+[node name="GameCamera" parent="." instance=ExtResource("7_axkr6")]
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -122,24 +113,6 @@ offset_right = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WrapEnemies" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 34
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WrapEnemies"]
-shape = SubResource("RectangleShape2D_bv862")
-
-[node name="WrapLevelChunks" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 8
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WrapLevelChunks"]
-shape = SubResource("RectangleShape2D_bbp18")
-
 [node name="ExplosionParticleEffect" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 200
@@ -149,5 +122,3 @@ one_shot = true
 explosiveness = 1.0
 
 [connection signal="collided" from="HitboxComponent" to="." method="_on_hitbox_component_collided"]
-[connection signal="area_exited" from="WrapEnemies" to="." method="_on_wrap_enemies_area_exited"]
-[connection signal="area_exited" from="WrapLevelChunks" to="." method="_on_wrap_level_chunks_area_exited"]

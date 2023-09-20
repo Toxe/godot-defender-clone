@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://w6o1abab5bpu"]
+
+[ext_resource type="Script" path="res://scenes/game_camera/game_camera.gd" id="1_idyrf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grh6j"]
+size = Vector2(4608, 1296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x83rw"]
+size = Vector2(2304, 1296)
+
+[node name="GameCamera" type="Node2D"]
+script = ExtResource("1_idyrf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(300, 0)
+limit_top = 0
+limit_bottom = 0
+position_smoothing_enabled = true
+
+[node name="WrapEnemies" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 34
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WrapEnemies"]
+shape = SubResource("RectangleShape2D_grh6j")
+
+[node name="WrapLevelChunks" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WrapLevelChunks"]
+shape = SubResource("RectangleShape2D_x83rw")
+
+[connection signal="area_exited" from="WrapEnemies" to="." method="_on_wrap_enemies_area_exited"]
+[connection signal="area_exited" from="WrapLevelChunks" to="." method="_on_wrap_level_chunks_area_exited"]
