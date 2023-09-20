@@ -15,14 +15,15 @@ func spawn_humans(count: int):
     var spawned_humans: Array[Node2D] = []
 
     while spawned_humans.size() < count:
+        # pick a random spawn position that isn't too close to other humans
+        var position := random_spawn_position(spawn_rect)
+        while position_is_too_close(position, spawned_humans, human_min_spawn_distance):
+            position = random_spawn_position(spawn_rect)
+
         var human = human_scene.instantiate() as Node2D
         var human_movement_component = human.get_node("MovementComponent") as MovementComponent
+        human.global_position = position
         human_movement_component.direction = random_direction()
-
-        # pick a random spawn position that isn't too close to other humans
-        human.global_position = random_spawn_position(spawn_rect)
-        while position_is_too_close(human.global_position, spawned_humans, human_min_spawn_distance):
-            human.global_position = random_spawn_position(spawn_rect)
 
         spawned_humans.append(human)
         add_child(human)
