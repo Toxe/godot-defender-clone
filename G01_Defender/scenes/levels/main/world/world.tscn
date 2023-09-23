@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://hiaug468218g"]
+
+[ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/main/world/level_chunk_01.tscn" id="1_06kts"]
+[ext_resource type="Script" path="res://scenes/levels/main/world/world.gd" id="1_8t37w"]
+[ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/main/world/level_chunk_02.tscn" id="2_nxu75"]
+[ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/main/world/level_chunk_03.tscn" id="3_04a2w"]
+[ext_resource type="PackedScene" uid="uid://u6fj8vy2f1oe" path="res://scenes/enemies/lander.tscn" id="3_btdf6"]
+[ext_resource type="PackedScene" uid="uid://b04um8wjch62q" path="res://scenes/enemies/mutant.tscn" id="5_7gh3y"]
+[ext_resource type="PackedScene" uid="uid://bowkvlw8hl5ej" path="res://scenes/enemies/swarmer.tscn" id="7_ef82g"]
+[ext_resource type="PackedScene" uid="uid://dd0hlvdakdx6j" path="res://scenes/enemies/baiter.tscn" id="8_7wg30"]
+
+[sub_resource type="Curve2D" id="Curve2D_rv7f8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30)
+}
+point_count = 2
+
+[node name="World" type="Node"]
+script = ExtResource("1_8t37w")
+
+[node name="LevelChunks" type="Node" parent="."]
+
+[node name="LevelChunk01" parent="LevelChunks" instance=ExtResource("1_06kts")]
+position = Vector2(-1152, 0)
+
+[node name="LevelChunk02" parent="LevelChunks" instance=ExtResource("2_nxu75")]
+
+[node name="LevelChunk03" parent="LevelChunks" instance=ExtResource("3_04a2w")]
+position = Vector2(1152, 0)
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(300, 300)
+
+[node name="HumanSpawnPath" type="Path2D" parent="."]
+position = Vector2(576, 590)
+curve = SubResource("Curve2D_rv7f8")
+
+[node name="SpawnLocation" type="PathFollow2D" parent="HumanSpawnPath"]
+rotation = 1.5708
+
+[node name="Lander" parent="." instance=ExtResource("3_btdf6")]
+position = Vector2(-339, 147)
+
+[node name="Lander2" parent="." instance=ExtResource("3_btdf6")]
+position = Vector2(-852, 236)
+
+[node name="Mutant" parent="." instance=ExtResource("5_7gh3y")]
+position = Vector2(804, 119)
+
+[node name="Mutant2" parent="." instance=ExtResource("5_7gh3y")]
+position = Vector2(1010, 264)
+
+[node name="Swarmer" parent="." instance=ExtResource("7_ef82g")]
+position = Vector2(1554, 131)
+
+[node name="Swarmer2" parent="." instance=ExtResource("7_ef82g")]
+position = Vector2(2025, 176)
+
+[node name="Swarmer3" parent="." instance=ExtResource("7_ef82g")]
+position = Vector2(2042, 403)
+
+[node name="Baiter" parent="." instance=ExtResource("8_7wg30")]
+position = Vector2(277, 150)
