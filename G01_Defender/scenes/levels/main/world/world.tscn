@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://hiaug468218g"]
+[gd_scene load_steps=11 format=3 uid="uid://hiaug468218g"]
 
 [ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/main/world/level_chunk_01.tscn" id="1_06kts"]
 [ext_resource type="Script" path="res://scenes/levels/main/world/world.gd" id="1_8t37w"]
 [ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/main/world/level_chunk_02.tscn" id="2_nxu75"]
 [ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/main/world/level_chunk_03.tscn" id="3_04a2w"]
 [ext_resource type="PackedScene" uid="uid://u6fj8vy2f1oe" path="res://scenes/enemies/lander.tscn" id="3_btdf6"]
+[ext_resource type="PackedScene" uid="uid://c3ek2u4koe6g0" path="res://scenes/levels/main/world/level_chunk_04.tscn" id="5_0muur"]
 [ext_resource type="PackedScene" uid="uid://b04um8wjch62q" path="res://scenes/enemies/mutant.tscn" id="5_7gh3y"]
 [ext_resource type="PackedScene" uid="uid://bowkvlw8hl5ej" path="res://scenes/enemies/swarmer.tscn" id="7_ef82g"]
 [ext_resource type="PackedScene" uid="uid://dd0hlvdakdx6j" path="res://scenes/enemies/baiter.tscn" id="8_7wg30"]
@@ -27,6 +28,9 @@ position = Vector2(-1152, 0)
 
 [node name="LevelChunk03" parent="LevelChunks" instance=ExtResource("3_04a2w")]
 position = Vector2(1152, 0)
+
+[node name="LevelChunk04" parent="LevelChunks" instance=ExtResource("5_0muur")]
+position = Vector2(2304, 0)
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(300, 300)
@@ -60,4 +64,4 @@ position = Vector2(2025, 176)
 position = Vector2(2042, 403)
 
 [node name="Baiter" parent="." instance=ExtResource("8_7wg30")]
-position = Vector2(277, 150)
+position = Vector2(3074, 187)
