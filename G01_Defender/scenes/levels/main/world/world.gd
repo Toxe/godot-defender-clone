@@ -13,7 +13,12 @@ func _ready():
 
 func spawn_player():
     var player = player_scene.instantiate() as Player
-    player.global_position = $PlayerSpawnPoint.global_position
+
+    # spawn player in the middle of the level
+    var level_chunks = get_ordered_level_chunks()
+    var spawn_rect := Rect2(level_chunks.front().global_position, Vector2(level_chunks.size() * 1152, 648))
+    player.global_position = spawn_rect.get_center()
+
     add_child(player)
 
 
