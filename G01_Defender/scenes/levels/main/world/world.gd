@@ -10,7 +10,11 @@ func _ready():
     spawns.spawn_enemy_wave(6, 2, 2, player, level_chunks)
 
 
-func get_ordered_level_chunks() -> Array[Node]:
-    var level_chunks = $LevelChunks.get_children()
+func get_ordered_level_chunks() -> Array[LevelChunk]:
+    var level_chunks: Array[LevelChunk] = []
+    for node in $LevelChunks.get_children():
+        if node is LevelChunk:
+            level_chunks.append(node)
+
     level_chunks.sort_custom(func(a: LevelChunk, b: LevelChunk): return a.global_position.x < b.global_position.x)
     return level_chunks

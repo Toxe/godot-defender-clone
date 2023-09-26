@@ -24,7 +24,7 @@ func wrap_node_around_level(node: Node2D, wrap_to_side: WrapAroundSide, number_o
     node.global_position.x += number_of_level_chunks * level_chunk_width * int(wrap_to_side)
 
 
-func wrap_chunks_around_level(level_chunks: Array[Node], begin_index: int, end_index: int, wrap_to_side: WrapAroundSide):
+func wrap_chunks_around_level(level_chunks: Array[LevelChunk], begin_index: int, end_index: int, wrap_to_side: WrapAroundSide):
     for i in range(begin_index, end_index):
         wrap_node_around_level(level_chunks[i], wrap_to_side, level_chunks.size(), 1152)
 

@@ -11,7 +11,7 @@ const human_min_spawn_distance := 100.0
 const enemies_min_spawn_distance := 300.0
 
 
-func spawn_player(ordered_level_chunks: Array[Node]) -> Player:
+func spawn_player(ordered_level_chunks: Array[LevelChunk]) -> Player:
     # spawn player in the middle of the level
     var spawn_rect := Rect2(ordered_level_chunks.front().global_position, Vector2(ordered_level_chunks.size() * 1152, 648))
 
@@ -44,11 +44,11 @@ func spawn_entities(count: int, entity_scene: PackedScene, spawn_rect: Rect2, mi
     return spawned_entities
 
 
-func spawn_humans(count: int, ordered_level_chunks: Array[Node]):
+func spawn_humans(count: int, ordered_level_chunks: Array[LevelChunk]):
     spawn_entities(count, human_scene, calc_spawn_rect($HumanSpawnPath/SpawnLocation, human_min_spawn_distance, ordered_level_chunks), human_min_spawn_distance)
 
 
-func spawn_enemy_wave(num_landers: int, num_bombers: int, num_random_enemies: int, player: Player, ordered_level_chunks: Array[Node]):
+func spawn_enemy_wave(num_landers: int, num_bombers: int, num_random_enemies: int, player: Player, ordered_level_chunks: Array[LevelChunk]):
     var lander_spawn_rect := calc_spawn_rect($LanderSpawnPath/SpawnLocation, enemies_min_spawn_distance, ordered_level_chunks)
     var normal_enemy_spawn_rect := calc_spawn_rect($NormalEnemySpawnPath/SpawnLocation, enemies_min_spawn_distance, ordered_level_chunks)
 
@@ -75,9 +75,9 @@ func position_is_too_close(pos: Vector2, nodes: Array[Node2D], min_distance: flo
     return nodes.any(func(other: Node2D): return pos.distance_to(other.global_position) < min_distance)
 
 
-func calc_spawn_rect(spawn_location: PathFollow2D, right_margin: float, ordered_level_chunks: Array[Node]) -> Rect2:
+func calc_spawn_rect(spawn_location: PathFollow2D, right_margin: float, ordered_level_chunks: Array[LevelChunk]) -> Rect2:
     # get the left-most level chunk
-    var left_level_chunk = ordered_level_chunks.front() as LevelChunk
+    var left_level_chunk = ordered_level_chunks.front()
 
     # top and bottom coordinates
     var top := point_on_path(spawn_location, 0.0)
