@@ -33,7 +33,11 @@ func start_level():
 
 
 func _on_player_destroyed():
-    # show game over text, wait for a moment and then finish the game
-    $UI/GameOverLabel.visible = true
-    await get_tree().create_timer(1.5).timeout
-    Events.game_finished.emit($ScoreCounter.score)
+    if $LivesCounter.has_lives_left():
+        $LivesCounter.decrease()
+        await start_level()
+    else:
+        # show game over text, wait for a moment and then finish the game
+        $UI/GameOverLabel.visible = true
+        await get_tree().create_timer(1.5).timeout
+        Events.game_finished.emit($ScoreCounter.score)
