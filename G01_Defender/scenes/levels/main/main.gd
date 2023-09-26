@@ -28,8 +28,9 @@ func start_level():
     await unload_world()
     load_world()
 
+    var player :=_world.spawn_player()
     _world.spawn_humans(8)
-    _world.spawn_player()
+    _world.spawn_enemy_wave(6, 2, 2, player)
 
 
 func _on_player_destroyed():
