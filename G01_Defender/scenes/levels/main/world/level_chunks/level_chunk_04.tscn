@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3ek2u4koe6g0"]
 
-[ext_resource type="PackedScene" uid="uid://d3cfd4ftvedds" path="res://scenes/levels/main/world/level_chunk_base.tscn" id="1_bpwmq"]
+[ext_resource type="PackedScene" uid="uid://d3cfd4ftvedds" path="res://scenes/levels/main/world/level_chunks/level_chunk_base.tscn" id="1_bpwmq"]
 
 [node name="LevelChunk04" instance=ExtResource("1_bpwmq")]
 

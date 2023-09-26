@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3cfd4ftvedds"]
 
-[ext_resource type="Script" path="res://scenes/levels/main/world/level_chunk_base.gd" id="1_abf0y"]
+[ext_resource type="Script" path="res://scenes/levels/main/world/level_chunks/level_chunk_base.gd" id="1_abf0y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oow5e"]
 size = Vector2(1152, 648)

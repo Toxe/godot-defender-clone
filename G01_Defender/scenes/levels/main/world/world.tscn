@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://hiaug468218g"]
 
-[ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/main/world/level_chunk_01.tscn" id="1_06kts"]
+[ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/main/world/level_chunks/level_chunk_01.tscn" id="1_06kts"]
 [ext_resource type="Script" path="res://scenes/levels/main/world/world.gd" id="1_8t37w"]
 [ext_resource type="PackedScene" uid="uid://es2kyd0d5f63" path="res://scenes/levels/main/world/wrap_around_level.tscn" id="2_j8yli"]
-[ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/main/world/level_chunk_02.tscn" id="2_nxu75"]
-[ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/main/world/level_chunk_03.tscn" id="3_04a2w"]
-[ext_resource type="PackedScene" uid="uid://c3ek2u4koe6g0" path="res://scenes/levels/main/world/level_chunk_04.tscn" id="5_0muur"]
+[ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/main/world/level_chunks/level_chunk_02.tscn" id="2_nxu75"]
+[ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/main/world/level_chunks/level_chunk_03.tscn" id="3_04a2w"]
+[ext_resource type="PackedScene" uid="uid://c3ek2u4koe6g0" path="res://scenes/levels/main/world/level_chunks/level_chunk_04.tscn" id="5_0muur"]
 
 [sub_resource type="Curve2D" id="Curve2D_rv7f8"]
 _data = {
