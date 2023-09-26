@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3gdt5uv8e545"]
+[gd_scene load_steps=5 format=3 uid="uid://d3gdt5uv8e545"]
+
+[ext_resource type="Script" path="res://scenes/levels/main/world/spawns.gd" id="1_yncpb"]
 
 [sub_resource type="Curve2D" id="Curve2D_p4gk4"]
 _data = {
@@ -19,6 +21,7 @@ _data = {
 point_count = 2
 
 [node name="Spawns" type="Node2D"]
+script = ExtResource("1_yncpb")
 
 [node name="HumanSpawnPath" type="Path2D" parent="."]
 position = Vector2(576, 590)
