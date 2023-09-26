@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://es2kyd0d5f63"]
+
+[ext_resource type="Script" path="res://scenes/components/wrap_around_level_component.gd" id="1_h1snd"]
+
+[node name="WrapAroundLevelComponent" type="Node"]
+script = ExtResource("1_h1snd")
