@@ -46,12 +46,12 @@ func spawn_entities(count: int, entity_scene: PackedScene, spawn_rect: Rect2, mi
 
 
 func spawn_humans(count: int):
-    spawn_entities(count, human_scene, calc_spawn_rect($HumanSpawnPath/SpawnLocation, human_min_spawn_distance), human_min_spawn_distance)
+    spawn_entities(count, human_scene, calc_spawn_rect($Spawns/HumanSpawnPath/SpawnLocation, human_min_spawn_distance), human_min_spawn_distance)
 
 
 func spawn_enemy_wave(num_landers: int, num_bombers: int, num_random_enemies: int, player: Player):
-    var lander_spawn_rect := calc_spawn_rect($LanderSpawnPath/SpawnLocation, enemies_min_spawn_distance)
-    var normal_enemy_spawn_rect := calc_spawn_rect($NormalEnemySpawnPath/SpawnLocation, enemies_min_spawn_distance)
+    var lander_spawn_rect := calc_spawn_rect($Spawns/LanderSpawnPath/SpawnLocation, enemies_min_spawn_distance)
+    var normal_enemy_spawn_rect := calc_spawn_rect($Spawns/NormalEnemySpawnPath/SpawnLocation, enemies_min_spawn_distance)
 
     var all_entities: Array[Node2D] = [player]  # avoid the player
 

@@ -1,34 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://hiaug468218g"]
+[gd_scene load_steps=8 format=3 uid="uid://hiaug468218g"]
 
 [ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/main/world/level_chunks/level_chunk_01.tscn" id="1_06kts"]
 [ext_resource type="Script" path="res://scenes/levels/main/world/world.gd" id="1_8t37w"]
 [ext_resource type="PackedScene" uid="uid://es2kyd0d5f63" path="res://scenes/levels/main/world/wrap_around_level.tscn" id="2_j8yli"]
 [ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/main/world/level_chunks/level_chunk_02.tscn" id="2_nxu75"]
 [ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/main/world/level_chunks/level_chunk_03.tscn" id="3_04a2w"]
+[ext_resource type="PackedScene" uid="uid://d3gdt5uv8e545" path="res://scenes/levels/main/world/spawns.tscn" id="3_blns8"]
 [ext_resource type="PackedScene" uid="uid://c3ek2u4koe6g0" path="res://scenes/levels/main/world/level_chunks/level_chunk_04.tscn" id="5_0muur"]
-
-[sub_resource type="Curve2D" id="Curve2D_rv7f8"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_eigg7"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_qsrqe"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300)
-}
-point_count = 2
 
 [node name="World" type="Node"]
 script = ExtResource("1_8t37w")
 
 [node name="WrapAroundLevel" parent="." instance=ExtResource("2_j8yli")]
+
+[node name="Spawns" parent="." instance=ExtResource("3_blns8")]
 
 [node name="LevelChunks" type="Node" parent="."]
 
@@ -42,24 +27,3 @@ position = Vector2(1152, 0)
 
 [node name="LevelChunk04" parent="LevelChunks" instance=ExtResource("5_0muur")]
 position = Vector2(2304, 0)
-
-[node name="HumanSpawnPath" type="Path2D" parent="."]
-position = Vector2(576, 590)
-curve = SubResource("Curve2D_rv7f8")
-
-[node name="SpawnLocation" type="PathFollow2D" parent="HumanSpawnPath"]
-rotation = 1.5708
-
-[node name="LanderSpawnPath" type="Path2D" parent="."]
-position = Vector2(576, 50)
-curve = SubResource("Curve2D_eigg7")
-
-[node name="SpawnLocation" type="PathFollow2D" parent="LanderSpawnPath"]
-rotation = 1.5708
-
-[node name="NormalEnemySpawnPath" type="Path2D" parent="."]
-position = Vector2(576, 150)
-curve = SubResource("Curve2D_qsrqe")
-
-[node name="SpawnLocation" type="PathFollow2D" parent="NormalEnemySpawnPath"]
-rotation = 1.5708
