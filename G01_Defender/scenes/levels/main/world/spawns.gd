@@ -12,12 +12,9 @@ const enemies_min_spawn_distance := 300.0
 
 
 func spawn_player(ordered_level_chunks: Array[LevelChunk]) -> Player:
-    # spawn player in the middle of the level
-    var spawn_rect := Rect2(ordered_level_chunks.front().global_position, Vector2(ordered_level_chunks.size() * 1152, 648))
-
+    # spawn player in the center of the level
     var player = player_scene.instantiate() as Player
-    player.global_position = spawn_rect.get_center()
-
+    player.global_position = calc_level_rect(ordered_level_chunks).get_center()
     add_child(player)
     return player
 
@@ -76,15 +73,17 @@ func position_is_too_close(pos: Vector2, nodes: Array[Node2D], min_distance: flo
 
 
 func calc_spawn_rect(spawn_location: PathFollow2D, right_margin: float, ordered_level_chunks: Array[LevelChunk]) -> Rect2:
-    # get the left-most level chunk
-    var left_level_chunk = ordered_level_chunks.front()
-
     # top and bottom coordinates
     var top := point_on_path(spawn_location, 0.0)
     var bottom := point_on_path(spawn_location, 1.0)
     assert(top <= bottom)
 
-    return Rect2(left_level_chunk.global_position.x, top, ordered_level_chunks.size() * 1152 - right_margin, bottom - top)
+    var level_rect := calc_level_rect(ordered_level_chunks)
+    return Rect2(level_rect.position.x, top, level_rect.size.x - right_margin, bottom - top)
+
+
+func calc_level_rect(ordered_level_chunks: Array[LevelChunk]) -> Rect2:
+    return Rect2(ordered_level_chunks.front().global_position, Vector2(ordered_level_chunks.size() * 1152, 648))
 
 
 func point_on_path(path_follow: PathFollow2D, progress_ratio: float) -> float:
