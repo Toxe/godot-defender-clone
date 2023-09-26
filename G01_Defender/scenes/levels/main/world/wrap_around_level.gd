@@ -1,4 +1,4 @@
-class_name WrapAroundLevelComponent extends Node
+extends Node
 
 enum WrapAroundSide {
     left = -1,
