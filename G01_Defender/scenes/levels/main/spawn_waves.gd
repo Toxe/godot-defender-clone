@@ -42,14 +42,6 @@ func spawn_new_wave():
             stop()
 
 
-func collect_existing_enemies() -> Array[Enemy]:
-    var enemies: Array[Enemy] = []
-    for enemy in get_tree().get_nodes_in_group("enemies"):
-        if not enemy.is_queued_for_deletion():
-            enemies.append(enemy)
-    return enemies
-
-
 func is_spawn_wave_completed(enemies: Array[Enemy]) -> bool:
     if enemies.is_empty():
         return true
@@ -68,5 +60,5 @@ func _on_timer_timeout():
 
 
 func _on_enemy_destroyed(_enemy: Enemy):
-    if has_waves_left() && is_spawn_wave_completed(collect_existing_enemies()):
+    if has_waves_left() && is_spawn_wave_completed(Enemy.collect_existing_enemies(get_tree())):
         start()

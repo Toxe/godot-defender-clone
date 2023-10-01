@@ -115,12 +115,9 @@ func point_on_path(path_follow: PathFollow2D, progress_ratio: float) -> float:
 func collect_existing_enemies_and_player() -> Array[Node2D]:
     var nodes: Array[Node2D] = []
 
-    for enemy in get_tree().get_nodes_in_group("enemies"):
-        if not enemy.is_queued_for_deletion():
-            nodes.append(enemy)
-
     var player = get_tree().get_first_node_in_group("player") as Player
     if player && not player.is_queued_for_deletion():
         nodes.append(player)
 
+    nodes.append_array(Enemy.collect_existing_enemies(get_tree()))
     return nodes

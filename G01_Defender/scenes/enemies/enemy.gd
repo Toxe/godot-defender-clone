@@ -4,6 +4,14 @@ class_name Enemy extends Node2D
 @export var type := Enums.EnemyType.unknown
 
 
+static func collect_existing_enemies(scene_tree: SceneTree) -> Array[Enemy]:
+    var enemies: Array[Enemy] = []
+    for enemy in scene_tree.get_nodes_in_group("enemies"):
+        if not enemy.is_queued_for_deletion():
+            enemies.append(enemy)
+    return enemies
+
+
 func _ready():
     add_to_group("enemies")
 
