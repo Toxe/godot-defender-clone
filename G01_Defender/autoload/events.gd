@@ -4,3 +4,4 @@ signal start_game
 signal game_finished(score: int)
 signal player_destroyed()
 signal enemy_destroyed(enemy: Enemy)
+signal spawn_new_wave()

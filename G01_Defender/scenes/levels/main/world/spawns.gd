@@ -23,13 +23,11 @@ func spawn_entities(count: int, entity_scene: PackedScene, spawn_rect: Rect2, mi
     var spawned_entities: Array[Node2D] = []
 
     while spawned_entities.size() < count:
-        # pick a random spawn position that isn't too close to other entities
-        var pos := random_spawn_position(spawn_rect)
-        while position_is_too_close(pos, spawned_entities, min_spawn_distance) || position_is_too_close(pos, other_entities, min_spawn_distance):
-            pos = random_spawn_position(spawn_rect)
+        var random_spawn := random_spawn_position(spawn_rect, min_spawn_distance, spawned_entities, other_entities)
+        min_spawn_distance = random_spawn.min_spawn_distance
 
         var entity = entity_scene.instantiate() as Node2D
-        entity.global_position = pos
+        entity.global_position = random_spawn.position
 
         var entity_movement_component = entity.get_node("MovementComponent") as MovementComponent
         if entity_movement_component:
@@ -45,11 +43,11 @@ func spawn_humans(count: int, ordered_level_chunks: Array[LevelChunk]):
     spawn_entities(count, human_scene, calc_spawn_rect($HumanSpawnPath/SpawnLocation, human_min_spawn_distance, ordered_level_chunks), human_min_spawn_distance)
 
 
-func spawn_enemy_wave(num_landers: int, num_bombers: int, num_random_enemies: int, player: Player, ordered_level_chunks: Array[LevelChunk]):
+func spawn_enemy_wave(num_landers: int, num_bombers: int, num_random_enemies: int, ordered_level_chunks: Array[LevelChunk]):
     var lander_spawn_rect := calc_spawn_rect($LanderSpawnPath/SpawnLocation, enemies_min_spawn_distance, ordered_level_chunks)
     var normal_enemy_spawn_rect := calc_spawn_rect($NormalEnemySpawnPath/SpawnLocation, enemies_min_spawn_distance, ordered_level_chunks)
 
-    var all_entities: Array[Node2D] = [player]  # avoid the player
+    var all_entities := collect_existing_enemies_and_player()
 
     all_entities.append_array(spawn_entities(num_landers, enemy_lander_scene, lander_spawn_rect, enemies_min_spawn_distance, all_entities))
     all_entities.append_array(spawn_entities(num_bombers, enemy_bomber_scene, normal_enemy_spawn_rect, enemies_min_spawn_distance, all_entities))
@@ -63,13 +61,36 @@ func random_direction() -> Vector2:
     return [Vector2.LEFT, Vector2.RIGHT].pick_random()
 
 
-func random_spawn_position(spawn_rect: Rect2) -> Vector2:
+func random_position_in_rect(spawn_rect: Rect2) -> Vector2:
     return Vector2(randf_range(spawn_rect.position.x, spawn_rect.end.x),
                    randf_range(spawn_rect.position.y, spawn_rect.end.y))
 
 
-func position_is_too_close(pos: Vector2, nodes: Array[Node2D], min_distance: float) -> bool:
-    return nodes.any(func(other: Node2D): return pos.distance_to(other.global_position) < min_distance)
+class RandomSpawnPosition:
+    var position: Vector2
+    var min_spawn_distance: float
+    func _init(pos: Vector2, dist: float):
+        position = pos
+        min_spawn_distance = dist
+
+
+# pick a random spawn position that isn't too close to other entities and if it takes too many tries cut the minimum distance in half
+func random_spawn_position(spawn_rect: Rect2, min_spawn_distance: float, spawned_entities: Array[Node2D], other_entities: Array[Node2D]) -> RandomSpawnPosition:
+    var repeats = 0
+    var random_spawn = RandomSpawnPosition.new(random_position_in_rect(spawn_rect), min_spawn_distance)
+
+    while position_is_too_close(random_spawn, spawned_entities) || position_is_too_close(random_spawn, other_entities):
+        random_spawn.position = random_position_in_rect(spawn_rect)
+        repeats += 1
+        if repeats >= 10:
+            random_spawn.min_spawn_distance /= 2.0
+            repeats = 0
+
+    return random_spawn
+
+
+func position_is_too_close(random_spawn: RandomSpawnPosition, nodes: Array[Node2D]) -> bool:
+    return nodes.any(func(other: Node2D): return random_spawn.position.distance_to(other.global_position) < random_spawn.min_spawn_distance)
 
 
 func calc_spawn_rect(spawn_location: PathFollow2D, right_margin: float, ordered_level_chunks: Array[LevelChunk]) -> Rect2:
@@ -89,3 +110,17 @@ func calc_level_rect(ordered_level_chunks: Array[LevelChunk]) -> Rect2:
 func point_on_path(path_follow: PathFollow2D, progress_ratio: float) -> float:
     path_follow.progress_ratio = progress_ratio
     return path_follow.global_position.y
+
+
+func collect_existing_enemies_and_player() -> Array[Node2D]:
+    var nodes: Array[Node2D] = []
+
+    for enemy in get_tree().get_nodes_in_group("enemies"):
+        if not enemy.is_queued_for_deletion():
+            nodes.append(enemy)
+
+    var player = get_tree().get_first_node_in_group("player") as Player
+    if player && not player.is_queued_for_deletion():
+        nodes.append(player)
+
+    return nodes
