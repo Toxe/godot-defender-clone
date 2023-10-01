@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://3vkd6101vxnj"]
+
+[ext_resource type="Script" path="res://scenes/debug/debug_ui.gd" id="1_mvrjb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkq13"]
+bg_color = Color(1, 1, 1, 0.121569)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_av1qr"]
+Label/constants/line_spacing = 0
+MarginContainer/constants/margin_bottom = 8
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 8
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vkq13")
+VBoxContainer/constants/separation = 0
+
+[node name="DebugUI" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+theme = SubResource("Theme_av1qr")
+script = ExtResource("1_mvrjb")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -154.0
+offset_right = 251.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "[P] Kill player"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "[K] Kill all enemies"
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "[L] Kill all landers and mutants"
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "[N] Spawn new wave"
+
+[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "[C] Toggle debug UI visibility"
+
+[node name="SpawnWavesLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "---"
+
+[node name="UIUpdateTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]

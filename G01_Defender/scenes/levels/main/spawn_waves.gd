@@ -1,4 +1,4 @@
-extends Node
+class_name SpawnWaves extends Node
 
 const number_of_spawn_waves := 3
 const time_to_first_spawn_wave := 1
