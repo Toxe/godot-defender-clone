@@ -18,6 +18,7 @@ size = Vector2(38, 18)
 [node name="Swarmer" type="Node2D"]
 script = ExtResource("1_xmr8l")
 score = 150
+type = 6
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_wypk8")]
 can_wrap_around_vertically = true

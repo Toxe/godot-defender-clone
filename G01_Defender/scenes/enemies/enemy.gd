@@ -1,6 +1,7 @@
 class_name Enemy extends Node2D
 
 @export var score := 0
+@export var type := Enums.EnemyType.unknown
 
 
 func _ready():

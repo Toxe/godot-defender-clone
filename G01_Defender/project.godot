@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Enums="*res://autoload/enums.gd"
 Events="*res://autoload/events.gd"
 GameController="*res://autoload/game_controller.gd"
 
