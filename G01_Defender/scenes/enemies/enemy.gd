@@ -5,6 +5,8 @@ class_name Enemy extends Node2D
 
 
 func _ready():
+    add_to_group("enemies")
+
     # automatically connect to the HitboxComponent "destroyed" signal
     for child in get_children():
         var hitbox_component = child as HitboxComponent
