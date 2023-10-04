@@ -1,8 +1,8 @@
 class_name SpawnWaves extends Node
 
 const number_of_spawn_waves := 3
-const time_to_first_spawn_wave := 1
-const time_to_next_spawn_wave := 30
+const time_to_immediate_wave := 1
+const time_to_next_wave := 30
 
 @onready var _spawn_waves_left = number_of_spawn_waves
 var _spawning_new_wave := false
@@ -12,14 +12,14 @@ func _ready():
     Events.enemy_destroyed.connect(_on_enemy_destroyed)
 
 
-func start():
+func start_timer_to_spawn_immediate_wave():
     if not _spawning_new_wave:
         _spawning_new_wave = true
-        $Timer.start(time_to_first_spawn_wave)
+        $Timer.start(time_to_immediate_wave)
 
 
-func restart():
-    $Timer.start(time_to_next_spawn_wave)
+func start_timer_to_next_wave():
+    $Timer.start(time_to_next_wave)
 
 
 func stop():
@@ -37,7 +37,7 @@ func spawn_new_wave():
         Events.spawn_new_wave.emit()
 
         if has_waves_left():
-            restart()
+            start_timer_to_next_wave()
         else:
             stop()
 
@@ -61,4 +61,4 @@ func _on_timer_timeout():
 
 func _on_enemy_destroyed(_enemy: Enemy):
     if has_waves_left() && is_spawn_wave_completed(Enemy.collect_existing_enemies(get_tree())):
-        start()
+        start_timer_to_spawn_immediate_wave()

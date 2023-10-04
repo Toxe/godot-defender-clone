@@ -27,7 +27,7 @@ func load_world():
 func start_level():
     await unload_world()
     load_world()
-    $SpawnWaves.start()
+    $SpawnWaves.start_timer_to_spawn_immediate_wave()
 
 
 func _on_player_destroyed():
