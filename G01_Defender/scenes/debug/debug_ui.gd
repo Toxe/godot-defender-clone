@@ -36,7 +36,7 @@ func debug_kill_landers_and_mutants():
 
 func debug_spawn_new_wave():
     if main_level && main_level._world:
-        main_level._world.get_node("SpawnWaves/Timer").start(0.2)
+        main_level._world.get_node("SpawnWaves/WaveTimer").start(0.2)
 
 
 func toggle_visibility():
@@ -58,7 +58,7 @@ func update_ui():
         var spawn_waves = main_level._world.get_node("SpawnWaves") as SpawnWaves
         if spawn_waves:
             %LevelNumberLabel.text = "Level %d" % main_level._world.level_number
-            %SpawnWavesLabel.text = "Spawn waves left: %d, time until next wave: %.01f" % [spawn_waves._spawn_waves_left, spawn_waves.get_node("Timer").time_left]
+            %SpawnWavesLabel.text = "Spawn waves left: %d, time until next wave: %.01f" % [spawn_waves._spawn_waves_left, spawn_waves.get_node("WaveTimer").time_left]
             if spawn_waves._spawning_new_wave:
                 %SpawnWavesLabel.text += " [spawning new wave]"
 

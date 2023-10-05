@@ -22,5 +22,9 @@ func get_ordered_level_chunks() -> Array[LevelChunk]:
     return level_chunks
 
 
+func _on_spawn_waves_spawn_baiter():
+    spawns.spawn_baiter(get_ordered_level_chunks())
+
+
 func _on_spawn_waves_spawn_new_wave():
     spawns.spawn_enemy_wave(6, 2, 1 + ceil(level_number / 2.0), get_ordered_level_chunks())

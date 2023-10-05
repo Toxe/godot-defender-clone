@@ -2,8 +2,9 @@ class_name Spawns extends Node2D
 
 const player_scene = preload("res://scenes/player/player.tscn")
 const human_scene = preload("res://scenes/human/human.tscn")
-const enemy_lander_scene = preload("res://scenes/enemies/lander.tscn")
+const enemy_baiter_scene = preload("res://scenes/enemies/baiter.tscn")
 const enemy_bomber_scene = preload("res://scenes/enemies/bomber.tscn")
+const enemy_lander_scene = preload("res://scenes/enemies/lander.tscn")
 const enemy_pod_scene = preload("res://scenes/enemies/pod.tscn")
 const enemy_swarmer_scene = preload("res://scenes/enemies/swarmer.tscn")
 
@@ -41,6 +42,10 @@ func spawn_entities(count: int, entity_scene: PackedScene, spawn_rect: Rect2, mi
 
 func spawn_humans(count: int, ordered_level_chunks: Array[LevelChunk]):
     spawn_entities(count, human_scene, calc_spawn_rect($HumanSpawnPath/SpawnLocation, human_min_spawn_distance, ordered_level_chunks), human_min_spawn_distance)
+
+
+func spawn_baiter(ordered_level_chunks: Array[LevelChunk]):
+    spawn_entities(1, enemy_baiter_scene, calc_spawn_rect($NormalEnemySpawnPath/SpawnLocation, enemies_min_spawn_distance, ordered_level_chunks), enemies_min_spawn_distance)
 
 
 func spawn_enemy_wave(num_landers: int, num_bombers: int, num_random_enemies: int, ordered_level_chunks: Array[LevelChunk]):

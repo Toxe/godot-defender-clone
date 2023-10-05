@@ -31,4 +31,5 @@ position = Vector2(1152, 0)
 [node name="LevelChunk04" parent="LevelChunks" instance=ExtResource("5_0muur")]
 position = Vector2(2304, 0)
 
+[connection signal="spawn_baiter" from="SpawnWaves" to="." method="_on_spawn_waves_spawn_baiter"]
 [connection signal="spawn_new_wave" from="SpawnWaves" to="." method="_on_spawn_waves_spawn_new_wave"]
