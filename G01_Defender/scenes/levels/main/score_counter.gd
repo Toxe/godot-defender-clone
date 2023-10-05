@@ -16,5 +16,5 @@ func update_label():
 
 
 func _on_enemy_destroyed(enemy: Enemy):
-     score += enemy.score
-     update_label()
+    score += enemy.score
+    update_label()
