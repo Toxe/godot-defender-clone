@@ -41,6 +41,8 @@ func debug_spawn_new_wave():
 
 func toggle_visibility():
     visible = !visible
+    if visible:
+        update_ui()
     start_or_stop_ui_update_timer()
 
 
@@ -51,10 +53,15 @@ func start_or_stop_ui_update_timer():
         $UIUpdateTimer.stop()
 
 
-func _on_ui_update_timer_timeout():
+func update_ui():
     if main_level && main_level._world:
         var spawn_waves = main_level._world.get_node("SpawnWaves") as SpawnWaves
         if spawn_waves:
-            %SpawnWavesLabel.text = "spawn waves left: %d, time until next wave: %.01f" % [spawn_waves._spawn_waves_left, spawn_waves.get_node("Timer").time_left]
+            %LevelNumberLabel.text = "Level %d" % main_level._world.level_number
+            %SpawnWavesLabel.text = "Spawn waves left: %d, time until next wave: %.01f" % [spawn_waves._spawn_waves_left, spawn_waves.get_node("Timer").time_left]
             if spawn_waves._spawning_new_wave:
                 %SpawnWavesLabel.text += " [spawning new wave]"
+
+
+func _on_ui_update_timer_timeout():
+    update_ui()

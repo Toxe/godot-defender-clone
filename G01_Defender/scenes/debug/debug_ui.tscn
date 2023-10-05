@@ -62,6 +62,11 @@ text = "[N] Spawn new wave"
 layout_mode = 2
 text = "[C] Toggle debug UI visibility"
 
+[node name="LevelNumberLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level ??"
+
 [node name="SpawnWavesLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
