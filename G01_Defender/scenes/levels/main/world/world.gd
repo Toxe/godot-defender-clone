@@ -1,5 +1,7 @@
 class_name World extends Node
 
+@export var level_number := 0
+
 @onready var spawns = $Spawns as Spawns
 
 
