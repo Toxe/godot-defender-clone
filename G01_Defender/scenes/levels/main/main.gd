@@ -7,6 +7,7 @@ var _world: World = null
 
 func _ready():
     Events.player_destroyed.connect(_on_player_destroyed)
+    Events.level_completed.connect(_on_level_completed)
     await start_level()
 
 
@@ -27,15 +28,26 @@ func load_world():
 func start_level():
     await unload_world()
     load_world()
-    $SpawnWaves.start_timer_to_spawn_immediate_wave()
 
 
 func _on_player_destroyed():
     if $LivesCounter.has_lives_left():
+        # decrease player lives and respawn
         $LivesCounter.decrease()
         await start_level()
     else:
-        # show game over text, wait for a moment and then finish the game
+        # show "game over" text, wait a moment and then finish the game
         $UI/GameOverLabel.visible = true
         await get_tree().create_timer(1.5).timeout
+        $UI/GameOverLabel.visible = false
         Events.game_finished.emit($ScoreCounter.score)
+
+
+func _on_level_completed():
+    # show "level completed" text, wait a moment and then start a new level
+    $UI/LevelCompletedLabel.text = "LEVEL XX COMPLETED"
+    $UI/LevelCompletedLabel.visible = true
+    await unload_world()
+    await get_tree().create_timer(1.5).timeout
+    $UI/LevelCompletedLabel.visible = false
+    await start_level()

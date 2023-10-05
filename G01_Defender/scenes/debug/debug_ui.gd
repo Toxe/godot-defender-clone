@@ -2,13 +2,9 @@ extends Control
 
 @export var main_level: MainLevel = null
 
-var _spawn_waves_component: SpawnWaves = null
-
 
 func _ready():
     if OS.has_feature("debug"):
-        if main_level:
-            _spawn_waves_component = main_level.get_node("SpawnWaves")
         start_or_stop_ui_update_timer()
 
 
@@ -39,8 +35,8 @@ func debug_kill_landers_and_mutants():
 
 
 func debug_spawn_new_wave():
-    if _spawn_waves_component:
-        _spawn_waves_component.get_node("Timer").start(0.2)
+    if main_level && main_level._world:
+        main_level._world.get_node("SpawnWaves/Timer").start(0.2)
 
 
 func toggle_visibility():
@@ -56,8 +52,9 @@ func start_or_stop_ui_update_timer():
 
 
 func _on_ui_update_timer_timeout():
-    if _spawn_waves_component:
-        var s = "spawn waves left: %d, time until next wave: %.01f" % [_spawn_waves_component._spawn_waves_left, _spawn_waves_component.get_node("Timer").time_left]
-        if _spawn_waves_component._spawning_new_wave:
-            s += " [spawning new wave]"
-        %SpawnWavesLabel.text = s
+    if main_level && main_level._world:
+        var spawn_waves = main_level._world.get_node("SpawnWaves") as SpawnWaves
+        if spawn_waves:
+            %SpawnWavesLabel.text = "spawn waves left: %d, time until next wave: %.01f" % [spawn_waves._spawn_waves_left, spawn_waves.get_node("Timer").time_left]
+            if spawn_waves._spawning_new_wave:
+                %SpawnWavesLabel.text += " [spawning new wave]"

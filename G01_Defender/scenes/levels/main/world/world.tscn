@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://hiaug468218g"]
+[gd_scene load_steps=9 format=3 uid="uid://hiaug468218g"]
 
 [ext_resource type="PackedScene" uid="uid://bcs5w3kst2vol" path="res://scenes/levels/main/world/level_chunks/level_chunk_01.tscn" id="1_06kts"]
 [ext_resource type="Script" path="res://scenes/levels/main/world/world.gd" id="1_8t37w"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dyw4myjc24fl0" path="res://scenes/levels/main/world/level_chunks/level_chunk_02.tscn" id="2_nxu75"]
 [ext_resource type="PackedScene" uid="uid://b5d5us5gsw7ej" path="res://scenes/levels/main/world/level_chunks/level_chunk_03.tscn" id="3_04a2w"]
 [ext_resource type="PackedScene" uid="uid://d3gdt5uv8e545" path="res://scenes/levels/main/world/spawns.tscn" id="3_blns8"]
+[ext_resource type="PackedScene" uid="uid://c0v1pb5bmtlon" path="res://scenes/levels/main/world/spawn_waves.tscn" id="4_lk7gm"]
 [ext_resource type="PackedScene" uid="uid://c3ek2u4koe6g0" path="res://scenes/levels/main/world/level_chunks/level_chunk_04.tscn" id="5_0muur"]
 
 [node name="World" type="Node"]
@@ -14,6 +15,8 @@ script = ExtResource("1_8t37w")
 [node name="WrapAroundLevel" parent="." instance=ExtResource("2_j8yli")]
 
 [node name="Spawns" parent="." instance=ExtResource("3_blns8")]
+
+[node name="SpawnWaves" parent="." instance=ExtResource("4_lk7gm")]
 
 [node name="LevelChunks" type="Node" parent="."]
 
@@ -27,3 +30,5 @@ position = Vector2(1152, 0)
 
 [node name="LevelChunk04" parent="LevelChunks" instance=ExtResource("5_0muur")]
 position = Vector2(2304, 0)
+
+[connection signal="spawn_new_wave" from="SpawnWaves" to="." method="_on_spawn_waves_spawn_new_wave"]

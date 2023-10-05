@@ -4,11 +4,10 @@ class_name World extends Node
 
 
 func _ready():
-    Events.spawn_new_wave.connect(_on_spawn_new_wave)
-
     var level_chunks := get_ordered_level_chunks()
     spawns.spawn_player(level_chunks)
-    spawns.spawn_humans(8, level_chunks)
+    spawns.spawn_humans(10, level_chunks)
+    $SpawnWaves.start_timer_to_spawn_wave_immediately()
 
 
 func get_ordered_level_chunks() -> Array[LevelChunk]:
@@ -21,5 +20,5 @@ func get_ordered_level_chunks() -> Array[LevelChunk]:
     return level_chunks
 
 
-func _on_spawn_new_wave():
+func _on_spawn_waves_spawn_new_wave():
     spawns.spawn_enemy_wave(6, 2, 2, get_ordered_level_chunks())
