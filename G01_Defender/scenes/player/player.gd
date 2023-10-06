@@ -2,8 +2,10 @@ class_name Player extends Node2D
 
 const laser_scene = preload("laser.tscn")
 
-@onready var movementComponent = $MovementComponent
-@onready var player_height: float = $HitboxComponent/CollisionShape2D.shape.size.y
+func _ready():
+    var height = $HitboxComponent/CollisionShape2D.shape.size.y
+    $MovementComponent.clamp_position_top = height + 5
+    $MovementComponent.clamp_position_bottom = get_viewport().get_visible_rect().size.y - height - 5
 
 
 func _unhandled_input(event):
@@ -13,13 +15,7 @@ func _unhandled_input(event):
 
 
 func _physics_process(_delta):
-    movementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-    clamp_vertical_position()
-
-
-func clamp_vertical_position():
-    var viewport_size = get_viewport().get_visible_rect().size
-    position.y = clamp(position.y, player_height + 5, viewport_size.y - player_height - 5)
+    $MovementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 
 func fire_laser():

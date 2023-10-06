@@ -36,6 +36,7 @@ z_index = 1
 script = ExtResource("1_n4fie")
 
 [node name="MovementComponent" parent="." instance=ExtResource("2_s2asx")]
+can_clamp_vertical_position = true
 speed = 500.0
 
 [node name="FlipOrientationComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_d6mi6")]
