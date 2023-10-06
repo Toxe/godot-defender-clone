@@ -6,15 +6,11 @@ class_name MovementComponent extends Node
 @export var clamp_position_bottom := 0.0
 
 @export var speed := 0.0:
-    get:
-        return speed
     set(value):
         speed = value
         _velocity = direction.normalized() * speed
 
 @export var direction := Vector2.ZERO:
-    get:
-        return direction
     set(value):
         direction = value
         _velocity = direction.normalized() * speed
