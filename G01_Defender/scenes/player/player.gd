@@ -2,6 +2,9 @@ class_name Player extends Node2D
 
 const laser_scene = preload("laser.tscn")
 
+@onready var speed: float = $MovementComponent.speed
+
+
 func _ready():
     var height = $HitboxComponent/CollisionShape2D.shape.size.y
     $MovementComponent.clamp_position_top = height + 5
@@ -15,7 +18,10 @@ func _unhandled_input(event):
 
 
 func _physics_process(_delta):
-    $MovementComponent.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+    # don't normalize player velocity; flying diagonally doesn't reduce horizontal speed
+    var h = Input.get_axis("move_left", "move_right")
+    var v = Input.get_axis("move_up", "move_down")
+    $MovementComponent.set_velocity(Vector2(h * speed, v * speed))
 
 
 func fire_laser():
