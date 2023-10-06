@@ -17,6 +17,8 @@ size = Vector2(48, 48)
 
 [node name="Lander" type="Node2D"]
 script = ExtResource("1_j3ap1")
+score = 150
+type = 3
 
 [node name="MovementComponent" parent="." instance=ExtResource("1_lgmwg")]
 can_clamp_vertical_position = true
