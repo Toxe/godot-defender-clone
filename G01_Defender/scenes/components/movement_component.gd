@@ -1,6 +1,9 @@
 class_name MovementComponent extends Node
 
 @export var can_wrap_around_vertically := false
+@export var can_clamp_vertical_position := false
+@export var clamp_position_top := 0.0
+@export var clamp_position_bottom := 0.0
 
 @export var speed := 0.0:
     get:
@@ -21,9 +24,15 @@ class_name MovementComponent extends Node
 
 func _physics_process(delta):
     var pos = get_parent().position + _velocity * delta
+    if can_clamp_vertical_position:
+        pos = clamp_vertical_position(pos)
     if can_wrap_around_vertically:
         pos = vertical_wrap_around(pos)
     get_parent().position = pos
+
+
+func clamp_vertical_position(pos: Vector2) -> Vector2:
+    return Vector2(pos.x, clamp(pos.y, clamp_position_top, clamp_position_bottom))
 
 
 func vertical_wrap_around(pos: Vector2) -> Vector2:
