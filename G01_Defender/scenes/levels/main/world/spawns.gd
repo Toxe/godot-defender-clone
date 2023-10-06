@@ -109,7 +109,8 @@ func calc_spawn_rect(spawn_location: PathFollow2D, right_margin: float, ordered_
 
 
 func calc_level_rect(ordered_level_chunks: Array[LevelChunk]) -> Rect2:
-    return Rect2(ordered_level_chunks.front().global_position, Vector2(ordered_level_chunks.size() * 1152, 648))
+    var chunk_size: Vector2 = ordered_level_chunks.front().size
+    return Rect2(ordered_level_chunks.front().global_position, Vector2(ordered_level_chunks.size() * chunk_size.x, chunk_size.y))
 
 
 func point_on_path(path_follow: PathFollow2D, progress_ratio: float) -> float:
