@@ -12,16 +12,16 @@ static func collect_existing_enemies(scene_tree: SceneTree) -> Array[Enemy]:
     return enemies
 
 
-func _ready():
+func _ready() -> void:
     add_to_group("enemies")
 
     # automatically connect to the HitboxComponent "destroyed" signal
     for child in get_children():
-        var hitbox_component = child as HitboxComponent
+        var hitbox_component := child as HitboxComponent
         if hitbox_component:
             hitbox_component.destroyed.connect(_on_destroyed)
             break
 
 
-func _on_destroyed():
+func _on_destroyed() -> void:
     Events.enemy_destroyed.emit(self)

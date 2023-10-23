@@ -5,33 +5,33 @@ const world_scene = preload("res://scenes/levels/main/world/world.tscn")
 var _world: World = null
 
 
-func _ready():
+func _ready() -> void:
     Events.player_destroyed.connect(_on_player_destroyed)
     Events.level_completed.connect(_on_level_completed)
     await start_level(1)
 
 
-func unload_world():
+func unload_world() -> void:
     if _world:
-        var num_children = get_child_count()
+        var num_children := get_child_count()
         _world.queue_free()
         _world = null
         while get_child_count() == num_children:
             await get_tree().process_frame
 
 
-func load_world(level_number: int):
+func load_world(level_number: int) -> void:
     _world = world_scene.instantiate() as World
     _world.level_number = level_number
     add_child(_world)
 
 
-func start_level(level_number: int):
+func start_level(level_number: int) -> void:
     await unload_world()
     load_world(level_number)
 
 
-func _on_player_destroyed():
+func _on_player_destroyed() -> void:
     if $LivesCounter.has_lives_left():
         # decrease player lives and respawn
         $LivesCounter.decrease()
@@ -44,9 +44,9 @@ func _on_player_destroyed():
         Events.game_finished.emit($ScoreCounter.score)
 
 
-func _on_level_completed():
+func _on_level_completed() -> void:
     # show "level completed" text, wait a moment and then start a new level
-    var level_number = _world.level_number
+    var level_number := _world.level_number
     $UI/LevelCompletedLabel.text = "LEVEL %d COMPLETED" % level_number
     $UI/LevelCompletedLabel.visible = true
     await unload_world()

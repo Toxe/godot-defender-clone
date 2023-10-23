@@ -10,27 +10,27 @@ signal shot_fired
 @export var one_shot := false
 
 
-func _ready():
+func _ready() -> void:
     if visible_on_screen_notifier:
         visible_on_screen_notifier.connect("screen_entered", start_shooting)
         visible_on_screen_notifier.connect("screen_exited", stop_shooting)
 
 
-func start_shooting():
+func start_shooting() -> void:
     if not one_shot:
         $Timer.start(randf_range(min_shot_delay, max_shot_delay))
 
 
-func stop_shooting():
+func stop_shooting() -> void:
     $Timer.stop()
 
 
 func shoot(direction: Vector2 = Vector2.ZERO) -> Node2D:
-    var shot = shot_scene.instantiate() as Node2D
+    var shot := shot_scene.instantiate() as Node2D
     shot.global_position = global_position
 
     if shot.has_node("MovementComponent"):
-        var shot_movement_component = shot.get_node("MovementComponent") as MovementComponent
+        var shot_movement_component := shot.get_node("MovementComponent") as MovementComponent
         shot_movement_component.direction = direction
 
     if shooting_strategy:
@@ -43,5 +43,5 @@ func shoot(direction: Vector2 = Vector2.ZERO) -> Node2D:
     return shot
 
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
     shoot()

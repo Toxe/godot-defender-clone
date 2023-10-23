@@ -6,28 +6,28 @@ class HighScoreData:
     var was_highest_score := false
     var high_scores := []
 
-    func _init(score: int):
+    func _init(score: int) -> void:
         latest_score = score
 
 
-@export var filename = "user://high_scores.json"
-@export var max_number_of_high_scores = 10
+@export var filename := "user://high_scores.json"
+@export var max_number_of_high_scores := 10
 
 var high_scores := []
 
 
-func _ready():
+func _ready() -> void:
     load_high_scores()
 
 
 func get_high_score_data() -> HighScoreData:
-    var high_score_data = HighScoreData.new(0)
+    var high_score_data := HighScoreData.new(0)
     high_score_data.high_scores = high_scores.duplicate()
     return high_score_data
 
 
 func add_if_valid_high_score(score: int) -> HighScoreData:
-    var high_score_data = HighScoreData.new(score)
+    var high_score_data := HighScoreData.new(score)
     if score > 0:
         if could_be_added_to_high_scores(score):
             high_score_data.was_highest_score = would_be_new_highest_score(score)
@@ -39,9 +39,9 @@ func add_if_valid_high_score(score: int) -> HighScoreData:
     return high_score_data
 
 
-func load_high_scores():
+func load_high_scores() -> void:
     if FileAccess.file_exists(filename):
-        var file = FileAccess.open(filename, FileAccess.READ)
+        var file := FileAccess.open(filename, FileAccess.READ)
         if file:
             high_scores = JSON.parse_string(file.get_as_text())
             sort_and_resize()
@@ -49,8 +49,8 @@ func load_high_scores():
             push_warning("unable to load file ", filename)
 
 
-func save_high_scores():
-    var file = FileAccess.open(filename, FileAccess.WRITE)
+func save_high_scores() -> void:
+    var file := FileAccess.open(filename, FileAccess.WRITE)
     if file:
         file.store_string(JSON.stringify(high_scores, "  "))
     else:
@@ -61,7 +61,7 @@ func is_full() -> bool:
     return high_scores.size() >= max_number_of_high_scores
 
 
-func sort_and_resize():
+func sort_and_resize() -> void:
     high_scores.sort()
     high_scores.reverse()
     if is_full():
@@ -71,7 +71,7 @@ func sort_and_resize():
 func could_be_added_to_high_scores(score: int) -> bool:
     if not is_full():
         return true
-    return high_scores.any(func(n) -> bool: return n < score)
+    return high_scores.any(func(n: int) -> bool: return n < score)
 
 
 func would_be_new_highest_score(score: int) -> bool:

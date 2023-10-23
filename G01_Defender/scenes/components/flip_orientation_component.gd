@@ -11,11 +11,11 @@ enum Orientation {
 var orientation := Orientation.unknown
 
 
-func _ready():
+func _ready() -> void:
     update_orientation(get_orientation_from_movement())
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
     update_orientation(get_orientation_from_movement())
 
 
@@ -26,8 +26,8 @@ func get_orientation_from_movement() -> FlipOrientationComponent.Orientation:
     return Orientation.left if movement_component.direction.x < 0.0 else Orientation.right
 
 
-func update_orientation(new_orientation: FlipOrientationComponent.Orientation):
+func update_orientation(new_orientation: FlipOrientationComponent.Orientation) -> void:
     if new_orientation != orientation:
-        var parent = get_parent() as Node2D
+        var parent := get_parent() as Node2D
         orientation = new_orientation
         parent.scale.x = -1.0 if orientation == Orientation.left else 1.0

@@ -3,12 +3,12 @@ extends Control
 @export var main_level: MainLevel = null
 
 
-func _ready():
+func _ready() -> void:
     if OS.has_feature("debug"):
         start_or_stop_ui_update_timer()
 
 
-func _unhandled_key_input(event: InputEvent):
+func _unhandled_key_input(event: InputEvent) -> void:
     if OS.has_feature("debug"):
         if event is InputEventKey and event.is_pressed() and not event.is_echo():
             match (event.keycode):
@@ -19,43 +19,43 @@ func _unhandled_key_input(event: InputEvent):
                 KEY_N: debug_spawn_new_wave()
 
 
-func debug_kill_player():
+func debug_kill_player() -> void:
     get_tree().get_first_node_in_group("player").get_node("HitboxComponent")._on_area_entered(null)
 
 
-func debug_kill_all_enemies():
+func debug_kill_all_enemies() -> void:
     for enemy in Enemy.collect_existing_enemies(get_tree()):
         enemy.get_node("HitboxComponent")._on_area_entered(null)
 
 
-func debug_kill_landers_and_mutants():
+func debug_kill_landers_and_mutants() -> void:
     for enemy in Enemy.collect_existing_enemies(get_tree()):
         if enemy.type == Enums.EnemyType.Lander || enemy.type == Enums.EnemyType.Mutant:
             enemy.get_node("HitboxComponent")._on_area_entered(null)
 
 
-func debug_spawn_new_wave():
+func debug_spawn_new_wave() -> void:
     if main_level && main_level._world:
         main_level._world.get_node("SpawnWaves/WaveTimer").start(0.2)
 
 
-func toggle_visibility():
+func toggle_visibility() -> void:
     visible = !visible
     if visible:
         update_ui()
     start_or_stop_ui_update_timer()
 
 
-func start_or_stop_ui_update_timer():
+func start_or_stop_ui_update_timer() -> void:
     if visible:
         $UIUpdateTimer.start()
     else:
         $UIUpdateTimer.stop()
 
 
-func update_ui():
+func update_ui() -> void:
     if main_level && main_level._world:
-        var spawn_waves = main_level._world.get_node("SpawnWaves") as SpawnWaves
+        var spawn_waves := main_level._world.get_node("SpawnWaves") as SpawnWaves
         if spawn_waves:
             %LevelNumberLabel.text = "Level %d" % main_level._world.level_number
             %SpawnWavesLabel.text = "Spawn waves left: %d, time until next wave: %.01f" % [spawn_waves._spawn_waves_left, spawn_waves.get_node("WaveTimer").time_left]
@@ -63,5 +63,5 @@ func update_ui():
                 %SpawnWavesLabel.text += " [spawning new wave]"
 
 
-func _on_ui_update_timer_timeout():
+func _on_ui_update_timer_timeout() -> void:
     update_ui()

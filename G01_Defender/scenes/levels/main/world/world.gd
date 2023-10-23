@@ -2,10 +2,10 @@ class_name World extends Node
 
 @export var level_number := 0
 
-@onready var spawns = $Spawns as Spawns
+@onready var spawns := $Spawns as Spawns
 
 
-func _ready():
+func _ready() -> void:
     var level_chunks := get_ordered_level_chunks()
     spawns.spawn_player(level_chunks)
     spawns.spawn_humans(10, level_chunks)
@@ -18,13 +18,13 @@ func get_ordered_level_chunks() -> Array[LevelChunk]:
         if node is LevelChunk:
             level_chunks.append(node)
 
-    level_chunks.sort_custom(func(a: LevelChunk, b: LevelChunk): return a.global_position.x < b.global_position.x)
+    level_chunks.sort_custom(func(a: LevelChunk, b: LevelChunk) -> bool: return a.global_position.x < b.global_position.x)
     return level_chunks
 
 
-func _on_spawn_waves_spawn_baiter():
+func _on_spawn_waves_spawn_baiter() -> void:
     spawns.spawn_baiter(get_ordered_level_chunks())
 
 
-func _on_spawn_waves_spawn_new_wave():
+func _on_spawn_waves_spawn_new_wave() -> void:
     spawns.spawn_enemy_wave(6, 2, 1 + ceil(level_number / 2.0), get_ordered_level_chunks())

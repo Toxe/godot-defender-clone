@@ -10,12 +10,12 @@ var _current_screen_index := _title_screen_index
 var _high_score_data: HighScoreManagerComponent.HighScoreData = null
 
 
-func _ready():
+func _ready() -> void:
     # get the high scores that the HighScoreManagerComponent has loaded at the start
     _high_score_data = $HighScoreManagerComponent.get_high_score_data()
 
 
-func _unhandled_key_input(event: InputEvent):
+func _unhandled_key_input(event: InputEvent) -> void:
     if event.is_action_pressed("quit"):
         pass  # let the game controller handle quit events
     else:
@@ -24,26 +24,26 @@ func _unhandled_key_input(event: InputEvent):
             Events.start_game.emit()
 
 
-func update_high_score_data(score: int):
+func update_high_score_data(score: int) -> void:
     _high_score_data = $HighScoreManagerComponent.add_if_valid_high_score(score)
 
 
-func show_high_score_or_title_screen():
+func show_high_score_or_title_screen() -> void:
     if _high_score_data.was_added_to_high_scores:
         show_high_score_screen()
     else:
         show_title_screen()
 
 
-func show_title_screen():
+func show_title_screen() -> void:
     _switch_to_screen(_title_screen_index)
 
 
-func show_high_score_screen():
+func show_high_score_screen() -> void:
     _switch_to_screen(_high_score_screen_index)
 
 
-func _switch_to_screen(next_screen_index: int):
+func _switch_to_screen(next_screen_index: int) -> void:
     assert(next_screen_index >= 0 && next_screen_index < _screens.size())
 
     # Update the high score screen controls only if we actually want to show the screen.
@@ -58,5 +58,5 @@ func _switch_to_screen(next_screen_index: int):
     $SwitchScreenTimer.start()
 
 
-func _on_switch_screen_timer_timeout():
+func _on_switch_screen_timer_timeout() -> void:
     _switch_to_screen((_current_screen_index + 1) % _screens.size())

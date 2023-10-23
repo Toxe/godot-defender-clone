@@ -3,7 +3,7 @@ class_name HighScoresScreen extends Control
 var _current_high_score_data: HighScoreManagerComponent.HighScoreData = null
 
 
-func update_high_score_screen(high_score_data: HighScoreManagerComponent.HighScoreData):
+func update_high_score_screen(high_score_data: HighScoreManagerComponent.HighScoreData) -> void:
     if _current_high_score_data == high_score_data:
         return
 
@@ -20,8 +20,8 @@ func update_high_score_screen(high_score_data: HighScoreManagerComponent.HighSco
 
         var label_highlighted := false
 
-        for label_score in high_score_data.high_scores:
-            var label = Label.new()
+        for label_score: int in high_score_data.high_scores:
+            var label := Label.new()
             label.text = str(label_score)
             label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 

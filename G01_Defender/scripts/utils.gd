@@ -1,7 +1,7 @@
 class_name Utils
 
 
-static func debug_log(object: Object = null, text: Variant = null):
+static func debug_log(object: Object = null, text: Variant = null) -> void:
     var object_id := "" if object == null else str(object) + " | "
     var append_text := "" if text == null else " | " + str(text)
     print("[%d | %d] %s%s:%d%s" % [Engine.get_physics_frames(), Engine.get_process_frames(), object_id, get_stack()[1]["function"], get_stack()[1]["line"], append_text])

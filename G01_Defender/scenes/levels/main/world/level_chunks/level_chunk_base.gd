@@ -15,5 +15,5 @@ var height: float:
     get: return size.y
 
 
-func _on_area_exited(area):
+func _on_area_exited(area: Area2D) -> void:
     level_chunk_exited.emit(self, area.get_parent())
