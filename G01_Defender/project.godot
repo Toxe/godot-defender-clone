@@ -26,6 +26,7 @@ GameController="*res://autoload/game_controller.gd"
 [display]
 
 window/size/always_on_top=true
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [input]
